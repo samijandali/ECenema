@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>Edit Profile</title>
+	<link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
+	<link href="https://mono.flatheme.net/assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+	<link href="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.theme.default.min.css" rel="stylesheet">
+	<link href="https://mono.flatheme.net/assets/plugins/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+	<link href="https://mono.flatheme.net/assets/css/app.min.css" rel="stylesheet">
+	<link href="https://mono.flatheme.net/assets/plugins/font-awesome/css/all.css" rel="stylesheet">
+	<link href="https://mono.flatheme.net/assets/plugins/themify/themify-icons.min.css" rel="stylesheet">
+</head>
+<body data-preloader="2">
+	<header>
+		<nav class="navbar">
+			<div class="container">
+				<a class="navbar-brand" href="https://mono.flatheme.net/">
+					<h5>NotAMC Theatres</h5>
+				</a>
+				<ul class="list-horizontal-unstyled">
+					<li class="nav-item">
+						<a style="white-space:pre" class="nav-link" href="userHome.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Logout.html">Logout</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./ProfileServ">Profile</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-8">
+					<div class="return-login">
+							<div class="row">
+								<div class="col-12 col-sm-6">
+									<label>Email</label>
+									<input type="email" name="email">
+								</div>
+								<div class="col-12 col-sm-6">
+									<label>Password</label>
+									<input type="password" name="pw">
+								</div>
+							</div>
+							<button class="button button-lg button-dark">Login</button>
+					</div>
+					<h4 class="margin-bottom-20">Edit Profile</h4>
+					<br></br>
+                    <h4 class="font-weight-light margin-bottom-30">Personal Information</h4>
+					<form action="./editProfileServ">
+						 <div class="form-row">
+                                    <div class="col">
+                                    	<label>New First Name</label>
+                                        <input type="text" id="fname" name ="fname">
+                                    </div>
+                                    <div class="col">
+                                        <label>New Last Name</label>
+                                        <input type="text" id= "lname" name="lname">
+                                    </div>
+                            </div>
+						<div>
+							<label>Current Password</label>
+							<input type="password" name="currentPass">
+						</div>
+						<div>
+							<label>New Password</label>
+							<input type="password" name="newPass">
+						</div>
+						<div>
+							<label>Confirm Password</label>
+							<input type="password" name="confirmPass">
+						</div>
+						<br></br>
+						
+							<div class="form-row">
+                                <div class="col">
+                                	<label>New Address</label>
+                                    <input type="text"  
+                                   id="address" name="address" class="form-control" /> <br />
+                                </div>
+                                <!-- State drop down -->
+                            <div class="col">
+                            	<br></br>
+                                <select class="custom-select w-100" id="state" name="state">
+                             
+                                    <option selected>State</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Texas">Texas</option>
+                                    <option value="Florida">Florida</option>
+                                </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col">
+                                	<label>New Zip Code</label>
+                                    <input type="number"  
+                                   id="zipcode" name="zipcode" pattern="[0-9]{5}" class="form-control" /> <br />
+                                </div>
+                                <div class="col">
+                                    <!-- Country Drop-down -->
+                                    <br></br>
+                                    <select class="custom-select w-100" id="country" name="country">
+                                    <option selected>Country</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="India">India</option>
+                                    <option value="Germany">Germany</option>
+                                    
+                                </select>
+                                </div>
+                             
+                            </div>
+						<div>
+							<label>New Phone Number (Format: +9999999999)</label>
+							<input type="tele" name="pnumber" id="pnumber" pattern='^\+?\d{0,10}'>
+						</div>
+							<br></br>
+							<h4 class="font-weight-light margin-bottom-30">Billing Information</h4>
+						<div>
+							<div class="form-row">
+                                <div class="col">
+                                	<label>New Address</label>
+                                    <input type="text"  
+                                   id="baddress" name="baddress" class="form-control" /> <br />
+                                </div>
+                                <!-- State drop down -->
+                            <div class="col">
+                            	<br></br>
+                                <select class="custom-select w-100" id="bstate" name="bstate">
+                             
+                                    <option selected>State</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Texas">Texas</option>
+                                    <option value="Florida">Florida</option>
+                                </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col">
+                                	<label>New Zip Code</label>
+                                    <input type="number"  
+                                   id="bzipcode" name="bzipcode" pattern="[0-9]{5}" class="form-control" /> <br />
+                                </div>
+                                <div class="col">
+                                    <!-- Country Drop-down -->
+                                    <br></br>
+                                    <select class="custom-select w-100" id="bcountry" name="bcountry">
+                                    <option selected>Country</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="India">India</option>
+                                    <option value="Germany">Germany</option>
+                                    
+                                </select>
+                                </div>
+                             
+                            </div>
+						<br></br>
+                    	
+                    	<div>
+							<label>New Credit Card Number</label>
+							<input type="text" pattern="[0-9]{16}" name="cardnum">
+						</div>
+						
+						<div>
+							<label>New CVV</label>
+							<input type="text" pattern="[0-9]{3}" name="cvv">
+						</div>
+						 <div class="form-group" id="expD">
+		                <label>Expiration Date</label>
+		                <select>
+		                    <option value="01">January</option>
+		                    <option value="02">February </option>
+		                    <option value="03">March</option>
+		                    <option value="04">April</option>
+		                    <option value="05">May</option>
+		                    <option value="06">June</option>
+		                    <option value="07">July</option>
+		                    <option value="08">August</option>
+		                    <option value="09">September</option>
+		                    <option value="10">October</option>
+		                    <option value="11">November</option>
+		                    <option value="12">December</option>
+		                </select>
+		                <select>
+		                    <option value="16"> 2016</option>
+		                    <option value="17"> 2017</option>
+		                    <option value="18"> 2018</option>
+		                    <option value="19"> 2019</option>
+		                    <option value="20"> 2020</option>
+		                    <option value="21"> 2021</option>
+		                </select>
+		            	</div>
+		            		<div class="form-row">
+                                    <div class="col">
+							<label>Un/Subscribe for promotions</label>
+							</div>
+							<div class="col">
+							<input class="form-check-input" type="checkbox" name="promo" id="promo" value="1">
+							</div>
+							</div>
+						</div>
+						
+						<button type="submit" value="submit" class="button button-lg button-grey button-rounded">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
+	<script src="https://mono.flatheme.net/assets/plugins/jquery.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/bootstrap/popper.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/appear.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/easing.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/retina.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/countdown.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/imagesloaded.pkgd.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/isotope.pkgd.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/jarallax/jarallax.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/jarallax/jarallax-video.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/magnific-popup/magnific-popup.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/jquery.easypiechart.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUma4oJ7_6VbfGNdUYdv6VQ0Ph07Fz0k8"></script>
+	<script src="https://mono.flatheme.net/assets/plugins/gmaps.min.js"></script>
+	<script src="https://mono.flatheme.net/assets/js/functions.min.js"></script>
+</body>
+</html>

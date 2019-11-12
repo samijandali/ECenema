@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Cart</title>
+    <link href="https://mono.flatheme.net/assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.theme.default.min.css" rel="stylesheet">
+    <link href="https://mono.flatheme.net/assets/plugins/magnific-popup/magnific-popup.min.css" rel="stylesheet">
+    <link href="https://mono.flatheme.net/assets/css/app.min.css" rel="stylesheet">
+    <link href="https://mono.flatheme.net/assets/plugins/font-awesome/css/all.css" rel="stylesheet">
+    <link href="https://mono.flatheme.net/assets/plugins/themify/themify-icons.min.css" rel="stylesheet">
+</head>
+<body data-preloader="2">
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="https://mono.flatheme.net/">
+                <h5>NotAMC Theatres</h5>
+            </a>
+            <button class="nav-toggle-btn position-center">
+                <span class="lines"></span>
+            </button>
+            <ul class="list-horizontal-unstyled">
+                <li class="nav-item">
+                    <a style="white-space:pre" class="nav-link" href="userHome">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="search-wrapper search-style-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center">
+                <form class="form-style-5">
+                    <input class="font-large" type="text" placeholder="Search.." name="search" required>
+                    <button><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="table-responsive">
+                    <table class="product-table">
+                        <thead>
+                        <tr>
+                            <th scope="col"><h6 class="heading-uppercase no-margin">Product</h6></th>
+                            <th scope="col"><h6 class="heading-uppercase no-margin">Price</h6></th>
+                            <th scope="col"><h6 class="heading-uppercase no-margin">Quantity</h6></th>
+                            <th scope="col"><h6 class="heading-uppercase no-margin">Total</h6></th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="cart-product-thumbnail">
+                                <a href="#"><img src="assets/images/event-10-52.jpg" alt=""></a>
+                                <h6>Avengers Endgame</h6>
+                            </td>
+                            <td>
+                                <span>$14</span>
+                            </td>
+                            <td class="cart-product-quantity">
+                                <div class="product-quantity">
+                                    <button class="button-circle button-circle-xs button-circle-grey dec"><i class="ti-minus"></i></button>
+                                    <input type="text" name="quantity" id="quantity" value="2">
+                                    <button class="button-circle button-circle-xs button-circle-grey inc"><i class="ti-plus"></i></button>
+                                </div>
+                            </td>
+                            <td class="cart-product-subtotal">
+                                <span class="font-weight-semi-bold">$28</span>
+                            </td>
+                            <td class="cart-product-remove">
+                                <button><i class="ti-close"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cart-product-thumbnail">
+                                <a href="#"><img src="assets/images/john3.jpg" alt=""></a>
+                                <h6>John Wick 3</h6>
+                            </td>
+                            <td>
+                                <span>$14</span>
+                            </td>
+                            <td class="cart-product-quantity">
+                                <div class="product-quantity">
+                                    <button class="button-circle button-circle-xs button-circle-grey dec"><i class="ti-minus"></i></button>
+                                    <input type="text" name="quantity" id="quantitty" value="1">
+                                    <button class="button-circle button-circle-xs button-circle-grey inc"><i class="ti-plus"></i></button>
+                                </div>
+                            </td>
+                            <td class="cart-product-subtotal">
+                                <span class="font-weight-semi-bold">$14</span>
+                            </td>
+                            <td class="cart-product-remove">
+                                <button><i class="ti-close"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row margin-top-30">
+                    <div class="col-12 col-sm-10 col-md-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter coupon code...">
+                            <span class="input-group-append">
+										<button class="btn btn-light" type="button">Apply Coupon</button>
+									</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="margin-bottom-30">
+                    <input type="text" placeholder="Enter Zip Code">
+                    <button class="btn btn-lg btn-light btn-block">Calculate Shipping</button>
+                </div>
+                <div class="payment-detail-box">
+                    <h5 class="margin-bottom-20">Payment Details</h5>
+                    <ul>
+                        <li><h6 class="heading-uppercase">Subtotal:</h6><span>$42</span></li>
+                        <li><h6 class="heading-uppercase">Shipping:</h6><span>$0</span></li>
+                        <li><h6 class="heading-uppercase">Total:</h6><span class="text-dark">$42</span></li>
+                    </ul>
+                </div>
+                <a class="button button-xl button-dark button-fullwidth" href="Checkout.html">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://mono.flatheme.net/assets/plugins/jquery.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/bootstrap/popper.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/appear.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/easing.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/retina.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/countdown.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/imagesloaded.pkgd.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/isotope.pkgd.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/jarallax/jarallax.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/jarallax/jarallax-video.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/magnific-popup/magnific-popup.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="https://mono.flatheme.net/assets/plugins/jquery.easypiechart.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUma4oJ7_6VbfGNdUYdv6VQ0Ph07Fz0k8"></script>
+<script src="https://mono.flatheme.net/assets/plugins/gmaps.min.js"></script>
+<script src="https://mono.flatheme.net/assets/js/functions.min.js"></script>
+</body>
+</html>
