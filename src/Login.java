@@ -1,3 +1,7 @@
+import controller.UserServlet;
+import model.User;
+import model.UserService;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.DriverManager;
@@ -27,77 +31,49 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out=response.getWriter();
-		String userid=request.getParameter("userid");
-		String password=request.getParameter("password");
-		String address;
-		String zipcode;
-		String state;
-		String country;
-		String pnumber;
-		String fname;
-		String lname;
-		String admin;
-		HttpSession session=request.getSession();
-		boolean flag=false;
+		PrintWriter out = response.getWriter();
+		String userid = request.getParameter("userid");
+		String password = request.getParameter("password");
+		UserService userService = new UserService();
+		HttpSession session = request.getSession();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/movieSite","root", "asdasd");//"UN", "PW"
+			Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
 			Statement stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery("Select * from users");
-			while(rs.next()) {
-
-				if(userid.equals(rs.getString(2)) && password.equals(decrypt(rs.getString(3),secretKey))) {
-					fname = rs.getString(4);
-					lname = rs.getString(5);
-					address = rs.getString(7);
-					zipcode = rs.getString(9);
-					state = rs.getString(8);
-					country = rs.getString(10);
-					pnumber = rs.getString(11);
-					admin = rs.getString(14);
-					session.setAttribute("fname", fname);
-					session.setAttribute("lname", lname);
-					session.setAttribute("username", userid);
-					session.setAttribute("address", address);
-					session.setAttribute("zipcode", zipcode);
-					session.setAttribute("state", state);
-					session.setAttribute("country", country);
-					session.setAttribute("pnumber", pnumber);
-					session.setAttribute("admin", admin);
-					if("0".equals(rs.getString(14))){
-						stmt.executeUpdate("update users set activity='"+1+"' where username='"+userid+"'");
-						session.setMaxInactiveInterval(10*60);
-						flag=true;
-						response.sendRedirect("./index.jsp");
-					} else if("1".contentEquals(rs.getString(14))) {
-						session.setAttribute("admin", admin);
-						stmt.executeUpdate("update users set activity='"+1+"' where username='"+userid+"'");
-						session.setMaxInactiveInterval(10*60);
-						flag=true;
-						response.sendRedirect("./index.jsp");
-					} else {
-						System.out.println("Error message = " + userid);
-						request.setAttribute("errMessage", userid);
-						request.getRequestDispatcher("Login.html").forward(request, response);
-						flag = true;
-					}
+			request.setAttribute("user", userService.getUser(userid));
+			User trial = (User) request.getAttribute("user");
+			if (encrypt(password, secretKey).equals(trial.getPassword())) {
+				session.setAttribute("user", trial);
+				if (0 == trial.getAdmin()) {
+					stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
+					session.setMaxInactiveInterval(10 * 60);
+					response.sendRedirect("./index.jsp");
+				} else if (1 == trial.getAdmin()) {
+					stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
+					session.setMaxInactiveInterval(10 * 60);
+					response.sendRedirect("./index.jsp");
 				}
-				if(flag==false) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
-					out.println("<font color=red>Invalid Username or password, please re-enter information. </font>");
-					rd.include(request, response);
-					flag = true;
-				}
+			}else{
+				request.removeAttribute("user");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
+				out.println("<font color=red>Invalid Username or password, please re-enter information. </font>");
+				rd.include(request, response);
 			}
-		}
-		catch(Exception p){
+		} catch (Exception p) {
 			out.print(p);
 		}
 
 	}
 
-	public static String decrypt(String strToDecrypt, String secret) {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+
+	}
+
+	private static String encrypt(String strToEncrypt, String secret)
+	{
 		try
 		{
 			byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -108,19 +84,14 @@ public class Login extends HttpServlet {
 			SecretKey tmp = factory.generateSecret(spec);
 			SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 
-			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-			cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
-			return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+			return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
 		}
-		catch (Exception e) {
-			System.out.println("Error while decrypting: " + e.toString());
+		catch (Exception e)
+		{
+			System.out.println("Error while encrypting: " + e.toString());
 		}
 		return null;
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-
-	}
-
 }

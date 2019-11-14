@@ -1,3 +1,4 @@
+<%@ page import="model.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,26 +31,24 @@
                 <li class="nav-item nav-dropdown">
                     <a style="white-space:pre" class="nav-link" href="userHome.html">Home</a>
                 </li>
-                <% if ("1".equals(session.getAttribute("admin"))) { %>
+                <%
+                    if (session.getAttribute("user") != null){
+                        User user = (User) session.getAttribute("user");
+                    if (1 == user.getAdmin()) { %>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
                 <% } %>
-
-                <% if (session.getAttribute("username") == null) { %>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="Login.html">Login</a>
-                    </li>
-                <% } else {%>
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link" href="./Logout">Logout</a>
                     </li>
-                <% } %>
-
-                <% if (!(session.getAttribute("username") == null)) { %>
                     <li class="nav-item nav-dropdown" >
                         <a class="nav-link" href = "./ProfileServ" > Profile </a >
                     </li >
+                <% } else{%>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="Login.html">Login</a>
+                </li>
                 <% } %>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="checkout.html">Checkout</a>

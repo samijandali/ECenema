@@ -1,5 +1,7 @@
 
 
+import model.User;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -24,19 +26,18 @@ public class Logout extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-//		RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
-		//String inactive = "inactive";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/movieSite","root", "asdasd");//"UN", "PW"
 			HttpSession session=request.getSession(false);
 			Statement stmt=con.createStatement();
-			String username=(String)session.getAttribute("username");
+			User user = (User) session.getAttribute("user");
+			String username= user.getUsername();
 			stmt.executeUpdate("update users set activity='"+0+"' where username='"+username+"'");
 			session = request.getSession(false);
 			if(session != null)
 				session.invalidate();
-			request.getRequestDispatcher("/index.jsp").forward(request,response);
+			request.getRequestDispatcher("/Logout.html").forward(request,response);
 		} catch(Exception p){
 			out.print(p);
 		}
