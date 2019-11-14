@@ -29,7 +29,7 @@
         <div class="container">
             <ul class="nav m-auto dropdown-transparent-dark">
                 <li class="nav-item nav-dropdown">
-                    <a style="white-space:pre" class="nav-link" href="userHome.html">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <%
                     if (session.getAttribute("user") != null){
