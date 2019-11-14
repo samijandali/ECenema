@@ -83,6 +83,7 @@ public class editoprofilo extends HttpServlet {
 //			if(exp != 0) {
 //				stmt.executeUpdate("update users set exp="+exp+" where username='"+user+"'");
 //			}
+			//hello test
 			rd.include(request, response);
 						
 		}
