@@ -14,7 +14,7 @@
           <element id="module-output" name="ECenema" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.17" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.18" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.5" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />

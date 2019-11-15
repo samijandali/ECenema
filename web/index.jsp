@@ -59,10 +59,11 @@
             </button>
         </div>
     </nav>
+    </form>
     <div style="width:240px;margin:0 auto">
         <form class="form-style-4" style="width: 200px">
-            <input type="text" class="form-control" placeholder="Search Movies"></
-        >
+            <input type="text" class="form-control" placeholder="Search Movies"/>
+            <a class="nav-link" href="searchResult.jsp">Enter</a></form>
     </div>
 </header>
 <div class="section" style="padding-top: 5px">
