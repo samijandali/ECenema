@@ -98,7 +98,7 @@ public class signup extends HttpServlet {
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("miguelangello96@gmail.com"));
 			msg.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("samirifai18@gmail.com")
+					InternetAddress.parse("hussainsqadri@gmail.com")
 			);
 			msg.setSubject("NotAMC Forgot Password");
 			msg.setText("Hi, this is your new password: " +pword+

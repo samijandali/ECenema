@@ -19,25 +19,24 @@ public class SearchMovie extends HttpServlet {
     private static final long serialVersionUID = 1L;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("searchResult.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchresult.jsp");
         HttpSession session = request.getSession(true);
         List movielist = new ArrayList();
 
-        String searchType = "";
+        //String searchType = "";
         String search = "";
 
-        searchType = request.getParameter("searchType");
+        //searchType = request.getParameter("searchType");
         search = request.getParameter("search");
 
         String sqlStr = null;
 
-        if(searchType.equals("title")){
+        if(search.equals("title"))
             sqlStr = "Select id, title, summary, genre, rating, length FROM movie where title like '%" + search + "%'";
-        }
-        else if(searchType.equals("genre")) {
+        else if(search.equals("genre"))
             sqlStr = "Select id, title, summary, genre, rating, length FROM movie where genre like '%" + search + "%'";
-        }else {
+            else
             System.out.println("How did you not select from the drop down table?");
-        }
         System.out.println(sqlStr);
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -46,8 +45,6 @@ public class SearchMovie extends HttpServlet {
 
                 Statement statement = con.createStatement();
                 ResultSet rs = statement.executeQuery(sqlStr);
-
-
                 while (rs.next()) {
                     List movie = new ArrayList();
                     movie.add(rs.getInt(1));
@@ -66,7 +63,6 @@ public class SearchMovie extends HttpServlet {
             e.printStackTrace();
         }
         request.setAttribute("movielist", movielist);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchresult.jsp");
         dispatcher.forward(request, response);
     }
 

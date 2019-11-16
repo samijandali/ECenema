@@ -12,12 +12,17 @@
     <title>Search</title>
 </head>
 <body>
+    <div style="width:240px;margin:0 auto">
+        <form class="form-style-4" style="width: 200px">
+            <input type="text" class="form-control" placeholder="Search Movies"/>
+            <a class="nav-link" href="./SearchMovie">Enter</a></form>
+    </div>
     <%
     String movie = request.getParameter("search");
     try{
     Class.forName("com.mysql.jdbc.Driver");
     Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
-    PreparedStatement stmt=con.prepareStatement("select * from movies where (title like '?') or (genre like '?')");
+    PreparedStatement stmt=con.prepareStatement("select * from movie where (title like '?') or (genre like '?')");
     stmt.setString('1', movie+"%");
     ResultSet Rs = stmt.executeQuery();
     while(Rs.next()) {

@@ -1,4 +1,8 @@
 <%@ page import="model.User" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Driver" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,13 +63,101 @@
             </button>
         </div>
     </nav>
+
+
+
+
+
     </form>
-    <div style="width:240px;margin:0 auto">
-        <form class="form-style-4" style="width: 200px">
-            <input type="text" class="form-control" placeholder="Search Movies"/>
-            <a class="nav-link" href="searchResult.jsp">Enter</a></form>
+    <form action="" method="POST">
+    <div class="container">
+        <div class="form-group">
+            <div class="col-sm-50">
+                <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="Search Movies"/>
+                        <div class="input-group-btn">
+                            <button type="submit" value="Search" class="btn btn-default">Enter</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped" style="width:70%">
+            <tr>
+                <th style="width: 100%">Results:</th>
+            </tr>
+            <%
+            try{
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
+                String Query="select * FROM movie where title like '%"+request.getParameter("search")+"%' or genre like '%"+request.getParameter("search")+"%'";
+                //String GenreCat = "select * FROM movie where genre like '%"+request.getParameter("search")+"%'";
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(Query);
+                //ResultSet rd = stm.executeQuery(GenreCat);
+            %>
+                <% while(rs.next()){ %>
+                <tr>
+                    <td>
+                        <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
+                            <div class="portfolio-item category-5" style="position: absolute; left: 369px; top: 304px;">
+                                <div class="portfolio-box">
+                                    <div class="portfolio-img">
+                                        <% if(rs.getString("genre").equalsIgnoreCase("Drama")) {%>
+                                            <img src="assets/images/Joker_Poster.jpg" alt="">
+                                        <% }else if(rs.getString("genre").equalsIgnoreCase("Romance")) {%>
+                                            <img src="assets/images/A_Silent_Voice_Film_Poster.jpg" alt="">
+                                        <% }else if(rs.getString("genre").equalsIgnoreCase("Fantasy")){ %>
+                                            <img src="assets/images/Your_Name.jpg" alt="">
+                                        <% }else if(rs.getString("title").equalsIgnoreCase("Joker")) {%>
+                                            <img src="assets/images/Joker_Poster.jpg" alt="">
+                                        <% }else if(rs.getString("title").equalsIgnoreCase("A Silent Voice")) {%>
+                                            <img src="assets/images/A_Silent_Voice_Film_Poster.jpg" alt="">
+                                        <% }else if(rs.getString("title").equalsIgnoreCase("Your Name")){ %>
+                                            <img src="assets/images/Your_Name.jpg" alt="">
+                                        <% }else{ %>
+                                            <img src="assets/images/ErrorMess.png" alt="">
+                                        <%}%>
+                                    </div>
+                                    <a href="moviePage.html"></a>
+                                    <div class="portfolio-title">
+                                        <div>
+                                            <h5 class="font-weight-normal"><%=rs.getString("title")%></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <% }%>
+            <%} catch (Exception ex) {
+                ex.printStackTrace();
+                ex.getMessage();
+            }%>
+        </table>
     </div>
+    </form>
 </header>
+
+
+
+
+
+
+
+
+
+
+
+<div class="section" style="padding-top: 5px">
+    <div class="container">
+        <div class="filter filter-style-2 text-center">
+            <ul>
+               <li class="active" data-filter="*">Featured Movies</li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="section" style="padding-top: 5px">
     <div class="container">
         <div class="filter filter-style-2 text-center">
