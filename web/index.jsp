@@ -1,8 +1,12 @@
-<%@ page import="model.User" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Driver" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.*"%>
+<%@page import="model.User"%>
+<%@page import="model.UserService"%>
+<%@ page import="model.MovieService" %>
+<%@ page import="model.*" %>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,9 +91,18 @@
             </tr>
             <%
             try{
+                PrintWriter out1 = response.getWriter();
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
                 String Query="select * FROM movie where title like '%"+request.getParameter("search")+"%' or genre like '%"+request.getParameter("search")+"%'";
+                session = request.getSession();
+                String title = request.getParameter("search");
+                String genre = request.getParameter("search");
+                MovieService movieService = new MovieService();
+                request.setAttribute("genre", movieService.getMovie(genre));
+                request.setAttribute("title", movieService.getMovie(title));
+                Movie trial = (Movie) request.getAttribute("title");
+                Movie test = (Movie) request.getAttribute("genre");
                 //String GenreCat = "select * FROM movie where genre like '%"+request.getParameter("search")+"%'";
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(Query);
@@ -102,23 +115,35 @@
                             <div class="portfolio-item category-5" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
                                     <div class="portfolio-img">
-                                        <% if(rs.getString("genre").equalsIgnoreCase("Drama")) {%>
+                                        <% if(genre.equalsIgnoreCase("Drama")) {
+                                            session.setAttribute(genre, test);
+                                            //out1.print(test.getGenre());%>
                                             <img src="assets/images/Joker_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("genre").equalsIgnoreCase("Romance")) {%>
+                                        <% }else if(genre.equalsIgnoreCase("Romance")) {
+                                            session.setAttribute("genre", test);%>
                                             <img src="assets/images/A_Silent_Voice_Film_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("genre").equalsIgnoreCase("Fantasy")){ %>
+                                        <% }else if(genre.equalsIgnoreCase("Fantasy")){
+                                            session.setAttribute("genre", test);%>
+
                                             <img src="assets/images/Your_Name.jpg" alt="">
-                                        <% }else if(rs.getString("title").equalsIgnoreCase("Joker")) {%>
+                                        <% }else if(title.equalsIgnoreCase("Joker")) {
+                                            session.setAttribute(title, trial);
+                                            //out1.print(trial.getTitle());%>
                                             <img src="assets/images/Joker_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("title").equalsIgnoreCase("A Silent Voice")) {%>
+                                        <% }else if(title.equalsIgnoreCase("A Silent Voice")) {
+                                            session.setAttribute(title, trial);%>
                                             <img src="assets/images/A_Silent_Voice_Film_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("title").equalsIgnoreCase("Your Name")){ %>
+                                        <% }else if(title.equalsIgnoreCase("Your Name")){
+                                            session.setAttribute("title", trial);%>
+
                                             <img src="assets/images/Your_Name.jpg" alt="">
-                                        <% }else{ %>
-                                            <img src="assets/images/ErrorMess.png" alt="">
+                                        <% }else if(!rs.next()){%>
+                                            <img src="assets/images/Error.png" alt="">
+                                        <% }else{%>
+                                        <img src="assets/images/Error.png" alt="">
                                         <%}%>
                                     </div>
-                                    <a href="moviePage.html"></a>
+                                        <a href="movieInfo.jsp"></a>
                                     <div class="portfolio-title">
                                         <div>
                                             <h5 class="font-weight-normal"><%=rs.getString("title")%></h5>
