@@ -92,7 +92,7 @@
 
                         <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
                             <%
-                                if(session.getAttribute("mcovieList") != null){
+                                if(session.getAttribute("movieList") != null){
                                     ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
                                     for(int q = 0; q<movieList.size(); q++){
                             %>
