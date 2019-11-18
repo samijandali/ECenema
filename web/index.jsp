@@ -50,7 +50,7 @@
                         <a class="nav-link" href="./Logout">Logout</a>
                     </li>
                     <li class="nav-item nav-dropdown" >
-                        <a class="nav-link" href = "./ProfileServ" > Profile </a >
+                        <a class="nav-link" href = "profile.jsp" > Profile </a >
                     </li >
                 <% } else{%>
                 <li class="nav-item nav-dropdown">

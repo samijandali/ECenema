@@ -93,6 +93,40 @@
                         </div>
                     </div>
                     <div class="form-row">
+                        <div class="col">
+                            <label>Cast</label>
+                            <input type="text" name="cast" required>
+                        </div>
+                        <div class="col">
+                            <label>Director</label>
+                            <input type="text" name="director" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Review 1</label>
+                            <input type="text" name="review1" required>
+                        </div>
+                        <div class="col">
+                            <label>Review 2</label>
+                            <input type="text" name="review2" required>
+                        </div>
+                        <div class="col">
+                            <label>Review 3</label>
+                            <input type="text" name="review3" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Producer</label>
+                            <input type="text" name="producer" required>
+                        </div>
+                        <div class="col">
+                            <label>Trailer Link</label>
+                            <input type="text" name="link" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <input type = "file" name = "file" size = "50" />
                     </div>
                     <br>
