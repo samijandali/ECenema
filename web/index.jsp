@@ -101,7 +101,7 @@
                                     <div class="portfolio-img">
                                             <img src="assets/images/<%out.print(movieList.get(q).getTitle());%>.jpg" alt="">
                                     </div>
-                                    <a href="moviePage.html"></a>
+                                    <a href="moviePage.jsp"></a>
                                     <div class="portfolio-title">
                                         <div>
                                             <h5 class="font-weight-normal"><%=movieList.get(q).getTitle()%></h5>
