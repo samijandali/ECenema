@@ -109,7 +109,7 @@
                                             <img src="assets/images/ErrorMess.png" alt="">
                                         <%}%>
                                     </div>
-                                    <a href="moviePage.html"></a>
+                                    <a href="moviePage.jsp"></a>
                                     <div class="portfolio-title">
                                         <div>
                                             <h5 class="font-weight-normal"><%=rs.getString("title")%></h5>
