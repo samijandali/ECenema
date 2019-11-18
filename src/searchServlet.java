@@ -1,14 +1,18 @@
 import model.Movie;
 import model.MovieService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Servlet implementation class Servlet1
@@ -26,14 +30,17 @@ public class searchServlet extends HttpServlet {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(Query);
             Movie movie = new Movie();
+            HttpSession session = request.getSession();
+            ArrayList<Movie> movies = new ArrayList<Movie>();
             while(rs.next()){
-
+                movies.add(new Movie(rs.getInt(6), rs.getString(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+                session.setAttribute("movieList", movies);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+        rd.include(request, response);
     }
 
 

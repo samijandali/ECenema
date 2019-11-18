@@ -5,6 +5,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="model.MovieService" %>
 <%@ page import="model.Movie" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,8 +71,7 @@
 
 
 
-    </form>
-    <form action="" method="POST">
+    <form action="./searchServlet" method="POST">
     <div class="container">
         <div class="form-group">
             <div class="col-sm-50">
@@ -92,39 +92,28 @@
                         <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
                             <div class="portfolio-item category-5" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
-                                    <div class="portfolio-img">
-                                        <% if(rs.getString("genre").equalsIgnoreCase("Drama")) {%>
-                                            <img src="assets/images/Joker_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("genre").equalsIgnoreCase("Romance")) {%>
-                                            <img src="assets/images/A_Silent_Voice_Film_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("genre").equalsIgnoreCase("Fantasy")){ %>
-                                            <img src="assets/images/Your_Name.jpg" alt="">
-                                        <% }else if(rs.getString("title").equalsIgnoreCase("Joker")) {%>
-                                            <img src="assets/images/Joker_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("title").equalsIgnoreCase("A Silent Voice")) {%>
-                                            <img src="assets/images/A_Silent_Voice_Film_Poster.jpg" alt="">
-                                        <% }else if(rs.getString("title").equalsIgnoreCase("Your Name")){ %>
-                                            <img src="assets/images/Your_Name.jpg" alt="">
-                                        <% }else{ %>
-                                            <img src="assets/images/ErrorMess.png" alt="">
-                                        <%}%>
+                                    <div class="portfolio-img" style="float:left">
+                                        <%
+                                        if(session.getAttribute("movieList") != null){
+                                            ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
+                                            for(int q = 0; q<movieList.size(); q++){
+                                        %>
+                                            <img src="assets/images/<%out.print(movieList.get(q).getTitle());%>.jpg" alt="">
+
+
                                     </div>
                                     <a href="moviePage.html"></a>
                                     <div class="portfolio-title">
                                         <div>
-                                            <h5 class="font-weight-normal"><%=rs.getString("title")%></h5>
+                                            <h5 class="font-weight-normal"><%=movieList.get(q).getTitle()%></h5>
                                         </div>
                                     </div>
+                                    <%}}%>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
-                <% }%>
-            <%} catch (Exception ex) {
-                ex.printStackTrace();
-                ex.getMessage();
-            }%>
         </table>
     </div>
     </form>
