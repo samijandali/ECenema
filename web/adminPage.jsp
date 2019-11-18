@@ -58,7 +58,7 @@ return; //necessary to make the redirect happen right now
                     <nav aria-label="breadcrumb">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
-                            <li class="breadcrumb-item"><a href="manageMovies.html">Manage Movies</a></li>
+                            <li class="breadcrumb-item"><a href="manageMovies.jsp">Manage Movies</a></li>
                             <li class="breadcrumb-item"><a href="managetimes.html">Manage Showtimes</a></li>
                             <li class="breadcrumb-item"><a href="manageHalls.html">Manage Halls</a></li>
                             <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
