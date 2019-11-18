@@ -89,18 +89,17 @@
             </tr>
                 <tr>
                     <td>
+
                         <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
-                            <div class="portfolio-item category-5" style="position: absolute; left: 369px; top: 304px;">
+                            <%
+                                if(session.getAttribute("mcovieList") != null){
+                                    ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
+                                    for(int q = 0; q<movieList.size(); q++){
+                            %>
+                            <div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
-                                    <div class="portfolio-img" style="float:left">
-                                        <%
-                                        if(session.getAttribute("movieList") != null){
-                                            ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
-                                            for(int q = 0; q<movieList.size(); q++){
-                                        %>
+                                    <div class="portfolio-img">
                                             <img src="assets/images/<%out.print(movieList.get(q).getTitle());%>.jpg" alt="">
-
-
                                     </div>
                                     <a href="moviePage.html"></a>
                                     <div class="portfolio-title">
@@ -108,10 +107,12 @@
                                             <h5 class="font-weight-normal"><%=movieList.get(q).getTitle()%></h5>
                                         </div>
                                     </div>
-                                    <%}}%>
+
                                 </div>
                             </div>
+                            <%}}%>
                         </div>
+
                     </td>
                 </tr>
         </table>
