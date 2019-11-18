@@ -119,7 +119,7 @@
                                 for(int i = 1; i < nbofMovies + 1; i++){
                                 Movie movie = movieService.getID(i);
                             %>
-                            <option value="<%out.print(i);%>" ><% out.print(movie.getGenre());%></option>
+                            <option value="<%out.print(i);%>" ><% out.print(movie.getTitle());%></option>
                             <%
                                     }%>
                         </select>

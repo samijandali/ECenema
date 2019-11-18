@@ -39,9 +39,7 @@ public class Movie {
         this.title = title;
     }
 
-    public String getSummary() {
-        return summary;
-    }
+    public String getSummary() { return summary; }
 
     public void setSummary(String summary) {
         this.summary = summary;
