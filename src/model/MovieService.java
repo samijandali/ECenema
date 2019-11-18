@@ -8,7 +8,14 @@ public class MovieService extends Movie{
     private String summary;
     private String genre;
     private String length;
-    private int rating;
+    private String rating;
+    private String cast;
+    private String director;
+    private String producer;
+    private String review1;
+    private String review2;
+    private String review3;
+    private String link;
 
     public Movie getByTitle(String title) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
@@ -20,10 +27,17 @@ public class MovieService extends Movie{
             title = resultSet.getString(1);
             summary = resultSet.getString(2);
             genre = resultSet.getString(3);
+            rating = resultSet.getString(4);
             length = resultSet.getString(5);
-            rating = resultSet.getInt(4);
+            cast = resultSet.getString(7);
+            director = resultSet.getString(8);
+            producer = resultSet.getString(9);
+            review1 = resultSet.getString(10);
+            review2 = resultSet.getString(11);
+            review3 = resultSet.getString(12);
+            link = resultSet.getString(13);
         }
-        return new Movie(id, title, summary, genre, rating, length);
+        return new Movie(id, title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link);
 
     }
 
@@ -37,10 +51,17 @@ public class MovieService extends Movie{
             title = resultSet.getString(1);
             summary = resultSet.getString(2);
             genre = resultSet.getString(3);
+            rating = resultSet.getString(4);
             length = resultSet.getString(5);
-            rating = resultSet.getInt(4);
+            cast = resultSet.getString(7);
+            director = resultSet.getString(8);
+            producer = resultSet.getString(9);
+            review1 = resultSet.getString(10);
+            review2 = resultSet.getString(11);
+            review3 = resultSet.getString(12);
+            link = resultSet.getString(13);
         }
-        return new Movie(id, title, summary, genre, rating, length);
+        return new Movie(id, title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link);
     }
     public int getNumMovies() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");

@@ -83,7 +83,10 @@
                 </div>
             </div>
         </div>
+        <%
+            if(session.getAttribute("movieList") != null){%>
         <table class="table table-bordered table-striped" style="width:70%">
+
             <tr>
                 <th style="width: 100%">Results:</th>
             </tr>
@@ -92,7 +95,6 @@
 
                         <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
                             <%
-                                if(session.getAttribute("movieList") != null){
                                     ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
                                     for(int q = 0; q<movieList.size(); q++){
                             %>
@@ -155,7 +157,7 @@
                 e.printStackTrace();
                 }
                 for(int i = 1; i < nbofMovies + 1; i++){
-                Movie movie = movieService.getID(i);
+                    Movie movie = movieService.getID(i);
             %>
 
             <div class="portfolio-item category-5" style="position: absolute; left: 369px; top: 304px;">
