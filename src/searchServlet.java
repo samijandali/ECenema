@@ -26,7 +26,7 @@ public class searchServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
-            String Query="select * FROM movie where title ='%"+request.getParameter("search")+"%' or genre like '%"+request.getParameter("search")+"%'";
+            String Query="select * FROM movie where title like '%"+request.getParameter("search")+"%' or genre like '%"+request.getParameter("search")+"%'";
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(Query);
             Movie movie = new Movie();
