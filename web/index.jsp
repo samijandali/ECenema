@@ -121,27 +121,12 @@
     </div>
     </form>
 </header>
-
 <div class="section" style="padding-top: 5px">
     <div class="container">
         <div class="filter filter-style-2 text-center">
             <ul>
-               <li class="active" data-filter="*">Featured Movies</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="section" style="padding-top: 5px">
-    <div class="container">
-        <div class="filter filter-style-2 text-center">
-            <ul>
-                <li class="active" data-filter="*">All</li>
-                <li data-filter=".category-1" class="">Action</li>
-                <li data-filter=".category-2">Comedy</li>
-                <li data-filter=".category-3">Kids</li>
-                <li data-filter=".category-5">SciFi</li>
-                <li data-filter=".category-4">Music</li>
-                <li data-filter=".category-6">Horror</li>
+                <li data-filter=".category-1" class="">Available Now</li>
+                <li class="active" data-filter=".category-0">Coming Soon</li>
             </ul>
         </div>
 
@@ -160,7 +145,7 @@
                     Movie movie = movieService.getID(i);
             %>
 
-            <div class="portfolio-item category-5" style="position: absolute; left: 369px; top: 304px;">
+            <div class="portfolio-item category-<% out.print(movie.getAvailable());%>" style="position: absolute; left: 369px; top: 304px;">
                 <div class="portfolio-box">
                     <div class="portfolio-img">
                         <img src="assets/images/<% out.print(movie.getTitle());%>.jpg" alt="">
