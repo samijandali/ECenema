@@ -1,6 +1,10 @@
-<%
-String admin = (String)session.getAttribute("admin");
-if(!"1".equals(admin))
+<%@ page import="model.User" %><%
+    User user = new User();
+    if (session.getAttribute("user") != null){
+        user = (User) session.getAttribute("user");
+    }
+int admin = user.getAdmin();
+if(admin == 0)
 {
 response.sendRedirect("index.jsp");
 return; //necessary to make the redirect happen right now

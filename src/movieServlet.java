@@ -1,3 +1,6 @@
+import model.MovieService;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 /**
  * Servlet implementation class Servlet1
@@ -16,7 +20,7 @@ public class movieServlet extends HttpServlet {
     private static String secretKey = "boooooooooom!!!!";
     private static String salt = "ssshhhhhhhhhhh!!!!";
     private static final long serialVersionUID = 1L;
-
+    MovieService movieService = new MovieService();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String title = request.getParameter("title");
@@ -31,11 +35,22 @@ public class movieServlet extends HttpServlet {
         String review2 = request.getParameter("review2");
         String review3 = request.getParameter("review3");
         String link = request.getParameter("link");
+        int available = Integer.parseInt(request.getParameter("available"));
+        try {
+            if(movieService.exists(title)){
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageMovies.jsp");
+                out.println("<font color=red>Movie already exists, please check your entry</font>");
+                rd.include(request, response);
+                return;
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO movie (title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link) VALUES ('"+title+"', '"+summary+"', '"+genre+"', '"+rating+"', '"+length+"', '"+cast+"', '"+director+"', '"+producer+"', '"+review1+"', '"+review2+"', '"+review3+"', '"+link+"')");
+            stmt.executeUpdate("INSERT INTO movie (title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link, available) VALUES ('"+title+"', '"+summary+"', '"+genre+"', '"+rating+"', '"+length+"', '"+cast+"', '"+director+"', '"+producer+"', '"+review1+"', '"+review2+"', '"+review3+"', '"+link+"', '"+available+"')");
         } catch (Exception p) {
             out.print(p);
         }

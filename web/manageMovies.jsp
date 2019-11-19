@@ -122,7 +122,11 @@
                             <input type="text" name="producer" required>
                         </div>
                         <div class="col">
-                            <label>Trailer Link</label>
+                        <label>Trailer Link</label>
+                        <input type="text" name="link" required>
+                        </div>
+                        <div class="col">
+                            <label>Availability (0 for coming soon, 1 for available)</label>
                             <input type="text" name="link" required>
                         </div>
                     </div>

@@ -16,6 +16,7 @@ public class MovieService extends Movie{
     private String review2;
     private String review3;
     private String link;
+    private int available;
 
     public Movie getByTitle(String title) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
@@ -36,8 +37,9 @@ public class MovieService extends Movie{
             review2 = resultSet.getString(11);
             review3 = resultSet.getString(12);
             link = resultSet.getString(13);
+            available = resultSet.getInt(14);
         }
-        return new Movie(id, title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link);
+        return new Movie(id, title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link, available);
 
     }
 
@@ -60,8 +62,9 @@ public class MovieService extends Movie{
             review2 = resultSet.getString(11);
             review3 = resultSet.getString(12);
             link = resultSet.getString(13);
+            available = resultSet.getInt(14);
         }
-        return new Movie(id, title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link);
+        return new Movie(id, title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link, available);
     }
     public int getNumMovies() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
@@ -73,5 +76,12 @@ public class MovieService extends Movie{
             num = resultSet.getInt(1);
         }
         return num;
+    }
+    public boolean exists(String title) throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select COUNT(*) from movie where title='"+title+"'");
+        return resultSet.next();
     }
 }

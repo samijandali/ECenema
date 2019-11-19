@@ -16,7 +16,7 @@ public class Movie {
     private String review2;
     private String review3;
     private String link;
-
+    private int available;
 
     public Movie() {
     }
@@ -28,7 +28,8 @@ public class Movie {
              String review1,
              String review2,
              String review3,
-             String link) {
+             String link,
+             int available) {
         this.id = id;
         this.title = title;
         this.summary = summary;
@@ -42,6 +43,7 @@ public class Movie {
         this.review2 = review2;
         this.review3 = review3;
         this.link = link;
+        this.available = available;
     }
 
     public int getID() {
@@ -145,5 +147,13 @@ public class Movie {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 }
