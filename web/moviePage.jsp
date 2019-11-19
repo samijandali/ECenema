@@ -136,7 +136,7 @@
         </div>
     </div><!-- end container -->
 </div>
-<iframe width="1206" height="678" src="https://www.youtube.com/embed/TcMBFSGVi1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1206" height="678" src="<% out.print(movie.getLink()); %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- end Product Content -->
 <!-- Product Tab content -->
 <div class="section no-padding-top">
@@ -146,99 +146,50 @@
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#tab-description"><h5 class="font-weight-light">Description</h5></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tab-reviews"><h5 class="font-weight-light">Reviews <span>(3)</span></h5></a>
-                </li>
             </ul>
             <div class="tab-content">
                 <!-- Description tab content -->
                 <div class="tab-pane fade show active" id="tab-description">
                     <div class="margin-bottom-20">
-                        <h6 class="heading-uppercase">Product Material:</h6>
-                        <p>Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures. It is the sequel to 2012's The Avengers, 2015's Avengers: Age of Ultron, and 2018's Avengers: Infinity War, and the twenty-second film in the Marvel Cinematic Universe (MCU). It was directed by Anthony and Joe Russo and written by Christopher Markus and Stephen McFeely, and features an ensemble cast including Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth, Scarlett Johansson, Jeremy Renner, Don Cheadle, Paul Rudd, Brie Larson, Karen Gillan, Danai Gurira, Benedict Wong, Jon Favreau, Bradley Cooper, Gwyneth Paltrow, and Josh Brolin. In the film, the surviving members of the Avengers and their allies attempt to reverse the damage caused by Thanos in Infinity War.</p>
+                        <h6 class="heading-uppercase">Summary:</h6>
+                        <p><% out.print(movie.getSummary());%></p>
                     </div>
                     <div>
                         <h6 class="heading-uppercase">Cast:</h6>
-
-
-                        <ul>
-                            <li>Robert Downey Jr.</li>
-                            <li>Chris Evans</li>
-                            <li>Mark Ruffalo</li>
-                            <li>Chris Hemsworth</li>
-                            <li>Scarlett Johansson</li>
-                            <li>Jeremy Renner</li>
-                            <li>Don Cheadle</li>
-                            <li>Paul Rudd</li>
-                            <li>Brie Larson</li>
-                            <li>Karen Gillan</li>
-                            <li>Danai Gurira</li>
-                            <li>Benedict Wong</li>
-                            <li>Jon Favreau</li>
-                            <li>Bradley Cooper</li>
-                            <li>Gwyneth Paltrow</li>
-                            <li>Josh Brolin</li>
-                        </ul>
+                        <p><% out.print(movie.getCast());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Producer:</h6>
+                        <p><% out.print(movie.getProducer());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Director:</h6>
+                        <p><% out.print(movie.getDirector());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Rating:</h6>
+                        <p><% out.print(movie.getRating());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Review:</h6>
+                        <p><% out.print(movie.getReview1());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Review:</h6>
+                        <p><% out.print(movie.getReview2());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Review:</h6>
+                        <p><% out.print(movie.getReview3());%></p>
                     </div>
                 </div>
                 <!-- Reviews tab content -->
-                <div class="tab-pane fade" id="tab-reviews">
-                    <!-- Review box 1 -->
-                    <div class="product-tab-review">
-                        <div class="product-tab-review-user">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="product-tab-review-content">
-                            <span class="product-tab-review-time">Feb 16, 2018</span>
-                            <h6 class="heading-uppercase">Alexander Warren</h6>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
-                    </div>
-                    <!-- Review box 2 -->
-                    <div class="product-tab-review">
-                        <div class="product-tab-review-user">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="product-tab-review-content">
-                            <span class="product-tab-review-time">Feb 14, 2018</span>
-                            <h6 class="heading-uppercase">John Doe</h6>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
-                    </div>
-                    <!-- Review box 3 -->
-                    <div class="product-tab-review">
-                        <div class="product-tab-review-user">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="product-tab-review-content">
-                            <span class="product-tab-review-time">Feb 12, 2018</span>
-                            <h6 class="heading-uppercase">Melissa Bakos</h6>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
-                    </div>
-                    <!-- end Review box 3 -->
-                </div>
             </div>
         </div>
     </div><!-- end container -->
