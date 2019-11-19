@@ -1,3 +1,11 @@
+<%@ page import="model.User" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Driver" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.*"%>
+<%@ page import="model.MovieService" %>
+<%@ page import="model.Movie" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Product-Single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Sep 2019 23:57:47 GMT -->
@@ -53,37 +61,14 @@
     <!-- Page header -->
 </header>
 <!-- Product Content -->
+<% Movie movie = (Movie) session.getAttribute("movie"); %>
 <div class="section">
     <div class="container">
         <div class="row align-items-center col-spacing-40">
             <div class="col-12 col-lg-6 product-single">
-                <div class="product-single-img">
 
-                    <div class="owl-carousel product-single-img-slider owl-loaded owl-drag" data-owl-items="1" data-owl-nav="true">
+                                        <img src="assets/images/<% out.print(movie.getTitle());%>.jpg">
 
-                        <div class="owl-stage-outer owl-height" style="height: 440px;">
-                            <div class="owl-stage" style="transform: translate3d(-880px, 0px, 0px); transition: 0.25s; width: 1320px;">
-                                <div class="owl-item" style="width: 440px;">
-                                    <div data-hash="first">
-                                        <img src="assets/images/screencap1.png">
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 440px;">
-                                    <div data-hash="second">
-                                        <img src="assets/images/screencap2.png">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 440px;">
-                                    <div data-hash="third">
-                                        <img src="assets/images/Avengers%20Endgame.jpg">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
             </div>
             <div class="col-12 col-lg-6">
                 <!-- Product Price -->
@@ -91,7 +76,10 @@
                     <h5 class="font-weight-light">$14</h5>
                 </div>
                 <!-- Product Title -->
-                <h4>Avengers Endgame</h4>
+
+                <h4><% out.print(movie.getTitle()); %></h4>
+
+
                 <!-- Product Rating -->
                 <div class="product-rating margin-bottom-20">
                     <i class="fas fa-star"></i>
@@ -101,9 +89,10 @@
                     <i class="far fa-star"></i>
                 </div>
                 <!-- Product text -->
-                <p>After the devastating events of Avengers: Infinity War (2018), the universe is in ruins.
-                    With the help of remaining allies,
-                    the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.</p>
+
+                <p><% out.print(movie.getSummary()); %>
+                </p>
+
                 <!-- Order -->
                 <div class="margin-top-20 margin-bottom-20">
                     <div class="product-quantity margin-right-30">
@@ -120,6 +109,8 @@
             <area target="" alt="" title="" href="" coords="190,109,161,84" shape="rect">
             <area target="" alt="" title="" href="" coords="197,87,224,108" shape="rect">
         </map>
+        <br>
+        <br>
         <div>
             <select class="custom-select" multiple>
                 <option selected>Open this select menu</option>
@@ -156,6 +147,8 @@
                     </div>
                     <div>
                         <h6 class="heading-uppercase">Cast:</h6>
+
+
                         <ul>
                             <li>Robert Downey Jr.</li>
                             <li>Chris Evans</li>

@@ -144,13 +144,17 @@
                 for(int i = 1; i < nbofMovies + 1; i++){
                     Movie movie = movieService.getID(i);
             %>
-
+            <script type="text/javascript">
+                $('img').on("click", function () {
+                    $('#AssignLabelsForm').submit();
+                });
+            </script>
             <div class="portfolio-item category-<% out.print(movie.getAvailable());%>" style="position: absolute; left: 369px; top: 304px;">
                 <div class="portfolio-box">
                     <div class="portfolio-img">
                         <img src="assets/images/<% out.print(movie.getTitle());%>.jpg" alt="">
                     </div>
-                    <a href="./BookMovie"></a>
+                    <a href="./BookServ?movie=<%out.print(movie.getTitle());%>"></a>
                     <div class="portfolio-title">
                         <div>
                             <h5 class="font-weight-normal"><% out.print(movie.getTitle());%></h5>
