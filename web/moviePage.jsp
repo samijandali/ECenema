@@ -6,6 +6,7 @@
 <%@ page import="model.MovieService" %>
 <%@ page import="model.Movie" %>
 <%@ page import="java.util.ArrayList" %>
+<% Movie movie = (Movie) session.getAttribute("movie"); %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Product-Single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Sep 2019 23:57:47 GMT -->
@@ -14,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Avengers Endgame (2019)</title>
+    <title><% out.print(movie.getTitle());%></title>
     <!-- CSS -->
     <link href="https://mono.flatheme.net/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://mono.flatheme.net/assets/css/owl.carousel.min.css" rel="stylesheet">
@@ -44,13 +45,25 @@
                 <li class="nav-item">
                     <a style="white-space:pre" class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                <%
+                    if (session.getAttribute("user") != null){
+                        User user = (User) session.getAttribute("user");
+                        if (1 == user.getAdmin()) { %>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
-                <!-- dropdown link 8 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="About.html">About</a>
+                <% } %>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="./Logout">Logout</a>
                 </li>
+                <li class="nav-item nav-dropdown" >
+                    <a class="nav-link" href = "profile.jsp" > Profile </a >
+                </li >
+                <% } else{%>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="Login.html">Login</a>
+                </li>
+                <% } %>
                 <li class="nav-item">
                     <a class="nav-link" href="cart.html">Cart</a>
                 </li>
@@ -61,14 +74,12 @@
     <!-- Page header -->
 </header>
 <!-- Product Content -->
-<% Movie movie = (Movie) session.getAttribute("movie"); %>
+
 <div class="section">
     <div class="container">
         <div class="row align-items-center col-spacing-40">
             <div class="col-12 col-lg-6 product-single">
-
-                                        <img src="assets/images/<% out.print(movie.getTitle());%>.jpg">
-
+                 <img src="assets/images/<% out.print(movie.getTitle());%>.jpg">
             </div>
             <div class="col-12 col-lg-6">
                 <!-- Product Price -->
@@ -125,6 +136,7 @@
         </div>
     </div><!-- end container -->
 </div>
+<iframe width="1206" height="678" src="https://www.youtube.com/embed/TcMBFSGVi1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- end Product Content -->
 <!-- Product Tab content -->
 <div class="section no-padding-top">

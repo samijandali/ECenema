@@ -1,7 +1,4 @@
 <%@ page import="model.User" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Driver" %>
-<%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.*"%>
 <%@ page import="model.MovieService" %>
 <%@ page import="model.Movie" %>
@@ -67,41 +64,36 @@
         </div>
     </nav>
 
-
-
-
-
     <form action="./searchServlet" method="POST">
-    <div class="container">
-        <div class="form-group">
-            <div class="col-sm-50">
-                <div class="input-group">
+        <div class="container">
+            <div class="form-group">
+                <div class="col-sm-50">
+                    <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search Movies"/>
                         <div class="input-group-btn">
                             <button type="submit" value="Search" class="btn btn-default">Enter</button>
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <%
-            if(session.getAttribute("movieList") != null){%>
-        <table class="table table-bordered table-striped" style="width:70%">
+            <%
+                if(session.getAttribute("movieList") != null){%>
+            <table class="table table-bordered table-striped" style="width:70%">
 
-            <tr>
-                <th style="width: 100%">Results:</th>
-            </tr>
+                <tr>
+                    <th style="width: 100%">Results:</th>
+                </tr>
                 <tr>
                     <td>
 
                         <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
                             <%
-                                    ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
-                                    for(int q = 0; q<movieList.size(); q++){
-                            %>
+                                ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
+                                for(int q = 0; q<movieList.size(); q++){%>
                             <div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
                                     <div class="portfolio-img">
-                                            <img src="assets/images/<%out.print(movieList.get(q).getTitle());%>.jpg" alt="">
+                                        <img src="assets/images/<%out.print(movieList.get(q).getTitle());%>.jpg" alt="">
                                     </div>
                                     <a href="moviePage.jsp"></a>
                                     <div class="portfolio-title">
@@ -109,16 +101,28 @@
                                             <h5 class="font-weight-normal"><%=movieList.get(q).getTitle()%></h5>
                                         </div>
                                     </div>
-
+                                </div>
+                            </div>
+                            <% } if(movieList.size() == 0){
+                                 %>
+                            <div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
+                                <div class="portfolio-box">
+                                    <div class="portfolio-img">
+                                        <img src="assets/images/Error.jpg" alt="">
+                                    </div>
+                                    <div class="portfolio-title">
+                                        <div>
+                                            <h5 class="font-weight-normal">Movie Not Found</h5>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <%}}%>
                         </div>
-
                     </td>
                 </tr>
-        </table>
-    </div>
+            </table>
+        </div>
     </form>
 </header>
 <div class="section" style="padding-top: 5px">
@@ -144,11 +148,6 @@
                 for(int i = 1; i < nbofMovies + 1; i++){
                     Movie movie = movieService.getID(i);
             %>
-            <script type="text/javascript">
-                $('img').on("click", function () {
-                    $('#AssignLabelsForm').submit();
-                });
-            </script>
             <div class="portfolio-item category-<% out.print(movie.getAvailable());%>" style="position: absolute; left: 369px; top: 304px;">
                 <div class="portfolio-box">
                     <div class="portfolio-img">
