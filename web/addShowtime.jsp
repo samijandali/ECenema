@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Manage Movies</title>
+    <title>Add Showtime</title>
     <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
     <!-- CSS -->
@@ -66,75 +66,35 @@
                         <button class="button button-lg button-dark">Login</button>
                     </form>
                 </div>
-                <form action="./movieServlet">
-                    <h4 class="margin-bottom-20">Add New Movie</h4>
+                <form action="./addShowtime">
+                    <h4 class="margin-bottom-20">Add New Showtime</h4>
                     <input type="hidden" name="hidden" value="add">
                     <div class="form-row">
+
                         <div class="col">
-                            <label>Title</label>
+                            <label>Movie Title</label>
                             <input type="text" name="title" required>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="col">
-                            <label>Summary</label>
-                            <input type="text" name="summary" required>
-                        </div>
-                        <div class="col">
-                            <label>Genre</label>
-                            <input type="text" name="genre" required>
+                            <label>Showroom Name</label>
+                            <select class="form-control" name="showroom">
+                                <option>1</option>
+                                <% // TODO: Add showRoom.getName()%>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
-                            <label>Rating</label>
-                            <input type="text" name="rating" required>
+                            <label>Day</label>
+                            <input type="text" name="day" required>
                         </div>
                         <div class="col">
-                            <label>Length</label>
-                            <input type="text" name="length" required>
+                            <label>Time Slot</label>
+                            <select class="form-control" name="time">
+                                <option>1</option>
+                                <% // TODO: Add showRoom.getName()%>
+                            </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label>Cast</label>
-                            <input type="text" name="cast" required>
-                        </div>
-                        <div class="col">
-                            <label>Director</label>
-                            <input type="text" name="director" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label>Review 1</label>
-                            <input type="text" name="review1" required>
-                        </div>
-                        <div class="col">
-                            <label>Review 2</label>
-                            <input type="text" name="review2" required>
-                        </div>
-                        <div class="col">
-                            <label>Review 3</label>
-                            <input type="text" name="review3" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label>Producer</label>
-                            <input type="text" name="producer" required>
-                        </div>
-                        <div class="col">
-                        <label>Trailer Link</label>
-                        <input type="text" name="link" required>
-                        </div>
-                        <div class="col">
-                            <label>Availability (0 for coming soon, 1 for available)</label>
-                            <input type="text" name="available" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <input type = "file" name = "file" size = "50" />
                     </div>
                     <br>
                     <br>
@@ -142,39 +102,6 @@
                         <button class="button button-lg button-grey button-rounded">Submit</button>
                     </div>
                 </form>
-                    <!-- Divider -->
-                    <hr class="bg-black-09">
-                    <br>
-                    <br>
-                    <h4 class="margin-bottom-20">Delete Movie</h4>
-                <form action="./movieServlet">
-                    <input type="hidden" name="hidden" value="delete">
-                    <div>
-
-                        <label for="isTitles"></label><select class="custom-select" id="isTitles" name="isTitles" multiple>
-                            <%
-                                MovieService movieService = new MovieService();
-                                ArrayList<Movie> movies = null;
-                                try {
-                                    movies = movieService.getAllMovies();
-                                } catch (ClassNotFoundException | SQLException e) {
-                                    e.printStackTrace();
-                                }
-                                assert movies != null;
-                                for (Movie movie : movies) {
-                            %>
-                            <option name ="movie" value="<%out.print(movie.getTitle());%>"><% out.print(movie.getTitle());%></option>
-                            <%
-                                    }%>
-                        </select>
-
-                    </div>
-                    <div>
-                        <button class="button button-lg button-grey button-rounded">Submit</button>
-                    </div>
-                    </form>
-                    <!-- Divider -->
-                    <hr class="bg-black-09">
                     <br>
                     <br>
                     <!-- checkbox -->

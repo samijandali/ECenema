@@ -10,32 +10,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.sql.*;
+
 /**
  * Servlet implementation class Servlet1
  */
-@WebServlet("/BookServ")
-public class BookServ extends HttpServlet {
-    private static String secretKey = "boooooooooom!!!!";
-    private static String salt = "ssshhhhhhhhhhh!!!!";
+@WebServlet("/addShowtime")
+public class addShowtime extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    MovieService movieService = new MovieService();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String urlWithQueryString = request.getRequestURL().append("").append(
-                request.getQueryString()).toString();
-        String title = urlWithQueryString.replace("http://localhost:8080/ECenema_war_exploded/BookServmovie=", "");
-        title = title.replace("%20", " ");
-        MovieService movieService = new MovieService();
-        Movie movie = new Movie();
+        String title = request.getParameter("title");
+        String showroom = request.getParameter("showroom");
+        String day = request.getParameter("day");
+        String time = request.getParameter("time");
         try {
-            movie = movieService.getByTitle(title);
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("Select * from showtime WHERE showroom='"+showroom+"'");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+
+        // Check if show day time all exist at the same time
+        // Check if movie exist
+        //if not then add the shit
         HttpSession session = request.getSession();
-        session.setAttribute("movie", movie);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/moviePage.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
         rd.include(request, response);
     }
 

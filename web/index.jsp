@@ -139,16 +139,18 @@
 
             <%
                 MovieService movieService = new MovieService();
-                int nbofMovies = 0;
+                ArrayList<Movie> movies = null;
                 try {
-                nbofMovies = movieService.getNumMovies();
+                    movies = movieService.getAllMovies();
                 } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+                    e.printStackTrace();
                 }
-                for(int i = 1; i < nbofMovies + 1; i++){
-                    Movie movie = movieService.getID(i);
+                assert movies != null;
+                for (Movie movie : movies) {
+                    System.out.println(movie.getTitle());
             %>
-            <div class="portfolio-item category-<% out.print(movie.getAvailable());%>" style="position: absolute; left: 369px; top: 304px;">
+            <div class="portfolio-item category-<% out.print(movie.getAvailable());%>"
+                 style="position: absolute; left: 369px; top: 304px;">
                 <div class="portfolio-box">
                     <div class="portfolio-img">
                         <img src="assets/images/<% out.print(movie.getTitle());%>.jpg" alt="">
