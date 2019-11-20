@@ -1,5 +1,6 @@
 import model.Movie;
 import model.MovieService;
+import model.ShowtimeService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,19 +25,24 @@ public class addShowtime extends HttpServlet {
         String showroom = request.getParameter("showroom");
         String day = request.getParameter("day");
         String time = request.getParameter("time");
+        ShowtimeService showtimeService = new ShowtimeService();
+        PrintWriter out=response.getWriter();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
-            Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("Select * from showtime WHERE showroom='"+showroom+"'");
-        } catch (ClassNotFoundException | SQLException e) {
+            if(showtimeService.exists(title)){
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.html");
+                out.println("<font color=red>Showtime already exists for another movie, please pick another</font>");
+                rd.include(request, response);
+            }
+
+            // Check if show day time all exist at the same time
+            // Check if movie exist
+            //if not then add the shit
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        // Check if show day time all exist at the same time
-        // Check if movie exist
-        //if not then add the shit
-        HttpSession session = request.getSession();
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
         rd.include(request, response);
     }
