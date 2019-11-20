@@ -1,7 +1,6 @@
-<%@ page import="model.MovieService" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="model.Movie" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -25,25 +24,7 @@
 </head>
 <body data-preloader="2">
 <header>
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <h5>NotAMC Theatres</h5>
-            </a>
-            <ul class="list-horizontal-unstyled">
-                <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-                <!-- dropdown link 8 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="About.html">About</a>
-                </li>
-            </ul>
-        </div><!-- end container -->
-    </nav>
+
 </header>
 <div class="section">
     <div class="container">
@@ -52,7 +33,6 @@
                 <!-- Returning customer login -->
                 <div class="return-login">
                     <form>
-                        <input type="hidden" id="add" name="add" value="add">
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <label class="required">Email</label>
@@ -68,34 +48,78 @@
                 </div>
                 <form action="./addShowtime">
                     <h4 class="margin-bottom-20">Add New Showtime</h4>
-                    <input type="hidden" name="hidden" value="add">
                     <div class="form-row">
+                        <div class="col">
+                            <label for="title">Movie Title</label><select class="custom-select" id="title" name="title">
+                            <%
+                                MovieService movieService = new MovieService();
+                                ArrayList<Movie> movies = null;
+                                try {
+                                    movies = movieService.getAllMovies();
+                                } catch (ClassNotFoundException | SQLException e) {
+                                    e.printStackTrace();
+                                }
+                                assert movies != null;
+                                for (Movie movie : movies) {
+                            %>
+                            <option name ="movie" value="<%out.print(movie.getTitle());%>"><% out.print(movie.getTitle());%></option>
+                            <%
+                                }%>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="day">Day</label>
+                            <select class="custom-select" id="day" name="day">
+                                <%
+                                    DayService dayService = new DayService();
+                                    ArrayList<Day> days = dayService.getAllDays();
+                                    for (Day day:
+                                            days) {
+                                %>
+                                <option value = <% out.print(day.getDate());%>>
+                                    <% out.print(day.getDate());%>
+                                </option>
+                                <%}%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="showroom">Showroom Name</label>
+                            <select class="custom-select" id="showroom" name="showroom">
+                                <%
+                                    ShowroomService showroomService = new ShowroomService();
+                                    ArrayList<Showroom> showrooms = showroomService.getAllShowRooms();
+                                    for (Showroom showroom:
+                                            showrooms) {
+                                %>
+                                <option value ="<%out.print(showroom.getName());%>">
+                                    <%out.print(showroom.getName());%>
+                                </option>
+                                <%}%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="time">Time Slot</label>
+                            <select name="time" id="time" class="custom-select">
+                                <%
+                                    TimeService timeService = new TimeService();
+                                    ArrayList<Time> times = timeService.getAllTimes();
+                                    for (Time time:
+                                            times) {
+                                %>
+                                <option value ="<% out.print(time.getTime());%>">
+                                    <% out.print(time.getTime());%>
+                                </option>
+                                <%}%>
+                            </select>
+                        </div>
+                    </div>
 
-                        <div class="col">
-                            <label>Movie Title</label>
-                            <input type="text" name="title" required>
-                        </div>
-                        <div class="col">
-                            <label>Showroom Name</label>
-                            <select class="form-control" name="showroom">
-                                <option>1</option>
-                                <% // TODO: Add showRoom.getName()%>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label>Day</label>
-                            <input type="text" name="day" required>
-                        </div>
-                        <div class="col">
-                            <label>Time Slot</label>
-                            <select class="form-control" name="time">
-                                <option>1</option>
-                                <% // TODO: Add showRoom.getName()%>
-                            </select>
-                        </div>
-                    </div>
                     <br>
                     <br>
                     <div>
@@ -104,13 +128,6 @@
                 </form>
                     <br>
                     <br>
-                    <!-- checkbox -->
-                    <div class="create-account-box">
-                        <div>
-                            <label class="required">Create account password</label>
-                            <input type="password" name="pw">
-                        </div>
-                    </div>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->

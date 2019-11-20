@@ -1,11 +1,10 @@
-<%@ page import="model.User" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Driver" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.*"%>
-<%@ page import="model.MovieService" %>
-<%@ page import="model.Movie" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.*" %>
+<%@ page import="java.util.Arrays" %>
 <% Movie movie = (Movie) session.getAttribute("movie"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,16 +122,22 @@
         <br>
         <br>
         <div>
-            <select class="custom-select" multiple>
-                <option selected>Open this select menu</option>
-                <option value="1">Tuesday 1:00 PM</option>
-                <option value="2">Tuesday 4:00 PM</option>
-                <option value="3">Wednesday 12:00 PM</option>
-                <option value="3">Wednesday 1:00 PM</option>
-                <option value="3">Thursday 5:00 PM</option>
-                <option value="3">Thursday 8:00 PM</option>
-                <option value="3">Thursday 9:00 PM</option>
-            </select>
+            <label for="ttitle">Showtimes</label><select style="width: 220px" class="custom-select" id="showtime" name="showtime">
+            <%
+                ShowtimeService showtimeService = new ShowtimeService();
+                ArrayList<String[]> showtimes = showtimeService.getAllShowtimes(movie.getTitle());
+                assert showtimes != null;
+                for (String[] showtime : showtimes) {
+                    String temp = "";
+                    temp = Arrays.toString(showtime);
+                    temp = temp.replace("[", "");
+                    temp = temp.replace("]", "");
+                    temp = temp.replace(",", "");
+            %>
+            <option name ="movie" value="<%out.print(temp);%>"><% out.print(temp);%></option>
+            <%
+                }%>
+        </select>
         </div>
     </div><!-- end container -->
 </div>

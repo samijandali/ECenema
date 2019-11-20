@@ -26,21 +26,35 @@ public class addShowtime extends HttpServlet {
         String day = request.getParameter("day");
         String time = request.getParameter("time");
         ShowtimeService showtimeService = new ShowtimeService();
-        PrintWriter out=response.getWriter();
+        PrintWriter out = response.getWriter();
         try {
-            if(showtimeService.exists(title)){
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.html");
+            if(showtimeService.exists(showroom, day, time)){
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
                 out.println("<font color=red>Showtime already exists for another movie, please pick another</font>");
                 rd.include(request, response);
+                return;
+            }
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
+                Statement stmt = con.createStatement();
+                int success = stmt.executeUpdate("INSERT INTO showtime (timeID, movieID, showroomID, dayID) values ((SELECT id from timeslot where time = '"+ time+"'), (SELECT id from movie where title = '"+ title+"'), (SELECT id from showroom where name = '"+showroom+"'),(SELECT id from day where day = '"+ day+"'))");
+                if(success == 1){
+                    out.println("<font color=red> Showtime got added successfully</font>");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
+                    rd.include(request, response);
+                    return;
+                }else{
+                    out.println("<font color=red>Showtime wasn't added, please check input again</font>");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
+                    rd.include(request, response);
+                    return;
+                }
+            } catch (Exception p) {
+                out.print(p);
             }
 
-            // Check if show day time all exist at the same time
-            // Check if movie exist
-            //if not then add the shit
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");

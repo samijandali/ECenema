@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ShowroomService extends Showroom {
     private int id;
@@ -8,15 +9,15 @@ public class ShowroomService extends Showroom {
     private int nbOfSeats;
 
 
-    public int getAllShowRooms() throws ClassNotFoundException, SQLException {
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
-    Statement stmt=con.createStatement();
-    ResultSet resultSet=stmt.executeQuery("Select COUNT(*) from showroom");
-    int num = 0;
-    while(resultSet.next()){
-        num = resultSet.getInt(1);
-    }
-    return num;
+    public ArrayList<Showroom> getAllShowRooms() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet rs=stmt.executeQuery("Select * from showroom");
+        ArrayList<Showroom> showrooms = new ArrayList<>();
+        while(rs.next()) {
+            showrooms.add(new Showroom(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+        }
+        return showrooms;
 }
 }

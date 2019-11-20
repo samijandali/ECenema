@@ -66,71 +66,63 @@
                         <button class="button button-lg button-dark">Login</button>
                     </form>
                 </div>
-                <form action="./movieServlet">
-                    <h4 class="margin-bottom-20">Add New Movie</h4>
+                <%
+                    MovieService movieService = new MovieService();
+                    Movie movie = movieService.getByTitle((String)session.getAttribute("editMovie"));
+                    session.setAttribute(movie.getSummary(), "currsummary");
+                    %>
+
+                <form action="./editMovieServ">
+                    <h4 class="margin-bottom-20">Edit <% out.print(session.getAttribute("editMovie"));%></h4>
                     <input type="hidden" name="hidden" value="add">
                     <div class="form-row">
                         <div class="col">
                             <label>Title</label>
-                            <input type="text" name="title" required>
+                            <input type="text" name="title" value="<% out.print(movie.getTitle());%>" >
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label>Summary</label>
-                            <input type="text" name="summary" required>
+                            <input type="text" name="summary" value="<% out.print(movie.getSummary());%>" >
                         </div>
                         <div class="col">
                             <label>Genre</label>
-                            <input type="text" name="genre" required>
+                            <input type="text" name="genre" value="<% out.print(movie.getGenre());%>" >
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label>Rating</label>
-                            <input type="text" name="rating" required>
+                            <input type="text" name="rating" value="<% out.print(movie.getRating());%>" >
                         </div>
                         <div class="col">
                             <label>Length</label>
-                            <input type="text" name="length" required>
+                            <input type="text" name="length" value="<% out.print(movie.getLength());%>" >
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label>Cast</label>
-                            <input type="text" name="cast" required>
+                            <input type="text" name="cast" value="<% out.print(movie.getCast());%>" >
                         </div>
                         <div class="col">
                             <label>Director</label>
-                            <input type="text" name="director" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label>Review 1</label>
-                            <input type="text" name="review1" required>
-                        </div>
-                        <div class="col">
-                            <label>Review 2</label>
-                            <input type="text" name="review2" required>
-                        </div>
-                        <div class="col">
-                            <label>Review 3</label>
-                            <input type="text" name="review3" required>
+                            <input type="text" name="director" value="<% out.print(movie.getDirector());%>" >
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label>Producer</label>
-                            <input type="text" name="producer" required>
+                            <input type="text" name="producer" value="<% out.print(movie.getProducer());%>" >
                         </div>
                         <div class="col">
-                        <label>Trailer Link</label>
-                        <input type="text" name="link" required>
+                            <label>Trailer Link</label>
+                            <input type="text" name="link" value="<% out.print(movie.getLink());%>" >
                         </div>
                         <div class="col">
                             <label>Availability (0 for coming soon, 1 for available)</label>
-                            <input type="text" name="available" required>
+                            <input type="text" name="available" value="<% out.print(movie.getAvailable());%>" >
                         </div>
                     </div>
                     <div class="form-row">
@@ -140,75 +132,25 @@
                     <br>
                     <div>
                         <button class="button button-lg button-grey button-rounded">Submit</button>
+
                     </div>
                 </form>
-                    <!-- Divider -->
-                    <hr class="bg-black-09">
-                    <br>
-                    <br>
-                    <h4 class="margin-bottom-20">Delete Movie</h4>
-                <form action="./movieServlet">
-                    <input type="hidden" name="hidden" value="delete">
+                <!-- Divider -->
+                <hr class="bg-black-09">
+                <br>
+                <br>
+
+                <!-- Divider -->
+                <hr class="bg-black-09">
+                <br>
+                <br>
+                <!-- checkbox -->
+                <div class="create-account-box">
                     <div>
-
-                        <label for="isTitles"></label><select class="custom-select" id="isTitles" name="isTitles" multiple>
-                            <%
-                                MovieService movieService = new MovieService();
-                                ArrayList<Movie> movies = null;
-                                try {
-                                    movies = movieService.getAllMovies();
-                                } catch (ClassNotFoundException | SQLException e) {
-                                    e.printStackTrace();
-                                }
-                                assert movies != null;
-                                for (Movie movie : movies) {
-                            %>
-                            <option name ="movie" value="<%out.print(movie.getTitle());%>"><% out.print(movie.getTitle());%></option>
-                            <%
-                                    }%>
-                        </select>
-
+                        <label class="required">Create account password</label>
+                        <input type="password" name="pw">
                     </div>
-                    <div>
-                        <button class="button button-lg button-grey button-rounded">Submit</button>
-                    </div>
-                    </form>
-                    <hr class="bg-black-09">
-                    <br>
-                    <br>
-                <h4 class="margin-bottom-20">Edit Movie</h4>
-                    <form action="./PassMovie">
-                        <label for="ttitle"></label><select class="custom-select" id="ttitle" name="ttitle">
-                        <%
-                            MovieService movieService1 = new MovieService();
-                            ArrayList<Movie> movies1 = null;
-                            try {
-                                movies1 = movieService1.getAllMovies();
-                            } catch (ClassNotFoundException | SQLException e) {
-                                e.printStackTrace();
-                            }
-                            assert movies1 != null;
-                            for (Movie movie : movies1) {
-                        %>
-                        <option name ="movie" value="<%out.print(movie.getTitle());%>"><% out.print(movie.getTitle());%></option>
-                        <%
-                            }%>
-                    </select>
-
-
-
-
-                    <div>
-                        <button class="button button-lg button-grey button-rounded">Edit Movie</button>
-                    </div>
-                </form>
-                    <!-- checkbox -->
-                    <div class="create-account-box">
-                        <div>
-                            <label class="required">Create account password</label>
-                            <input type="password" name="pw">
-                        </div>
-                    </div>
+                </div>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->

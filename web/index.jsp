@@ -147,7 +147,6 @@
                 }
                 assert movies != null;
                 for (Movie movie : movies) {
-                    System.out.println(movie.getTitle());
             %>
             <div class="portfolio-item category-<% out.print(movie.getAvailable());%>"
                  style="position: absolute; left: 369px; top: 304px;">
