@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+
 /**
  * Servlet implementation class Servlet1
  */
@@ -57,7 +58,7 @@ public class addShowtime extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
         rd.include(request, response);
     }
 

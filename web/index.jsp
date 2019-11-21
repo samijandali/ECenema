@@ -38,7 +38,7 @@
                 <%
                     if (session.getAttribute("user") != null){
                         User user = (User) session.getAttribute("user");
-                    if (1 == user.getAdmin()) { %>
+                    if (1 == user.getInstance().getAdmin()) { %>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
@@ -87,9 +87,9 @@
                     <td>
 
                         <div class="portfolio-wrapper column-4 spacing-10" style="position: relative; height: 805.333px;">
-                            <%
-                                ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
-                                for(int q = 0; q<movieList.size(); q++){%>
+                            <%ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
+                            if(movieList.size() > 0){%>
+                                <%for(int q = 0; q<movieList.size(); q++){%>
                             <div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
                                     <div class="portfolio-img">
@@ -103,20 +103,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <% } if(movieList.size() == 0){
-                                 %>
+                            <%} } if(movieList.size() == 0){%>
                             <div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
                                     <div class="portfolio-img">
-                                        <img src="assets/images/Error.jpg" alt="">
-                                    </div>
-                                    <div class="portfolio-title">
-                                        <div>
-                                            <h5 class="font-weight-normal">Movie Not Found</h5>
-                                        </div>
+                                        <h5 class="font-weight-normal">Movie Not Found</h5>
                                     </div>
                                 </div>
                             </div>
+
+
+                            <!--<div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
+                                <div class="portfolio-box">
+                                    <div class="portfolio-img">
+                                       <h5 class="font-weight-normal">Movie Not Found</h5>
+                                    </div>
+
+                                </div>
+                            </div>!-->
                             <%}}%>
                         </div>
                     </td>

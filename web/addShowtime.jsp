@@ -1,6 +1,19 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.*" %>
+
+<%@ page import="model.User" %><%
+    User user = new User();
+    if (session.getAttribute("user") != null){
+        user = (User) session.getAttribute("user");
+    }
+    int admin = user.getAdmin();
+    if(admin == 0)
+    {
+        response.sendRedirect("index.jsp");
+        return; //necessary to make the redirect happen right now
+    } %>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -9,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Add Showtime</title>
+    <title>Manage Movies</title>
     <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
     <!-- CSS -->
@@ -24,8 +37,47 @@
 </head>
 <body data-preloader="2">
 <header>
-
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <h5>NotAMC Theatres</h5>
+            </a>
+            <ul class="list-horizontal-unstyled">
+                <li class="nav-item">
+                    <a style="white-space:pre" class="nav-link" href="adminPage.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Logout.html">Logout</a>
+                </li>
+                <!-- dropdown link 8 -->
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+        </div><!-- end container -->
+    </nav>
 </header>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <!-- Returning customer login -->
+                <div class="return-login">
+                    <form>
+                        <input type="hidden" id="add" name="add" value="add">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <label class="required">Email</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label class="required">Password</label>
+                                <input type="password" name="pw" required>
+                            </div>
+                        </div>
+                        <button class="button button-lg button-dark">Login</button>
+                    </form>
+                </div>
 <div class="section">
     <div class="container">
         <div class="row">

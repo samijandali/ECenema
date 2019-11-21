@@ -47,7 +47,7 @@
                 <%
                     if (session.getAttribute("user") != null){
                         User user = (User) session.getAttribute("user");
-                        if (1 == user.getAdmin()) { %>
+                        if (1 == user.getInstance().getAdmin()) { %>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
@@ -177,6 +177,11 @@
                     <div>
                         <h6 class="heading-uppercase">Rating:</h6>
                         <p><% out.print(movie.getRating());%></p>
+                    </div>
+                    <br>
+                    <div>
+                        <h6 class="heading-uppercase">Genre:</h6>
+                        <p><% out.print(movie.getGenre());%></p>
                     </div>
                     <br>
                     <div>

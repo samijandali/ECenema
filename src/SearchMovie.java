@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.*;
 
@@ -18,6 +19,8 @@ import java.util.*;
 public class SearchMovie extends HttpServlet {
     private static final long serialVersionUID = 1L;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        PrintWriter out = response.getWriter();
+
         response.setContentType("searchResult.jsp");
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchresult.jsp");
         HttpSession session = request.getSession(true);
@@ -57,7 +60,7 @@ public class SearchMovie extends HttpServlet {
                     movielist.add(movie);
                 }
             } catch (SQLException s){
-                System.out.println("Value could not be found");
+                out.println("Value could not be found");
             }
         } catch(Exception e){
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class editMovieServ extends HttpServlet {
      //   doGet(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         PrintWriter out=response.getWriter();
         String title = request.getParameter("title");

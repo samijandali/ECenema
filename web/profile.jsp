@@ -25,13 +25,13 @@
             </a>
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="userHome.html">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Logout.html">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./ProfileServ">Profile</a>
+                    <a class="nav-link" href="profile.jsp">Profile</a>
                 </li>
             </ul>
         </div>

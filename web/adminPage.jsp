@@ -16,7 +16,7 @@ return; //necessary to make the redirect happen right now
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Mono - Creative Multi-Purpose HTML5 Template</title>
+    <title>Admin Page</title>
     <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
     <!-- CSS -->
@@ -63,9 +63,9 @@ return; //necessary to make the redirect happen right now
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
                             <li class="breadcrumb-item"><a href="manageMovies.jsp">Manage Movies</a></li>
-                            <li class="breadcrumb-item"><a href="managetimes.html">Manage Showtimes</a></li>
+                            <li class="breadcrumb-item"><a href="addShowtime.jsp">Manage Showtimes</a></li>
                             <li class="breadcrumb-item"><a href="manageHalls.html">Manage Halls</a></li>
-                            <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
+                            <li class="breadcrumb-item"><a href="manageUsers.html">Manage Promos</a></li>
                             <li class="breadcrumb-item"><a href="reports.html">View Reports</a></li>
                         </ul>
                     </nav>

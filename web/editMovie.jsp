@@ -2,6 +2,17 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="model.Movie" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %><%
+    User user = new User();
+    if (session.getAttribute("user") != null){
+        user = (User) session.getAttribute("user");
+    }
+    int admin = user.getAdmin();
+    if(admin == 0)
+    {
+        response.sendRedirect("index.jsp");
+        return; //necessary to make the redirect happen right now
+    } %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -35,7 +46,7 @@
                     <a style="white-space:pre" class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="Logout.html">Logout</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
@@ -122,7 +133,7 @@
                         </div>
                         <div class="col">
                             <label>Availability (0 for coming soon, 1 for available)</label>
-                            <input type="text" name="available" value="<% out.print(movie.getAvailable());%>" >
+                            <input type="number" min="0" max="9" step="1" name="available" value="<% out.print(movie.getAvailable());%>" >
                         </div>
                     </div>
                     <div class="form-row">
