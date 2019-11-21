@@ -57,7 +57,7 @@ public class addShowtime extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
         rd.include(request, response);
     }
 

@@ -1,26 +1,22 @@
 <%@ page import="model.User" %>
-<%
-    User user = new User();
-    if (session.getAttribute("user") != null){
-        user = (User) session.getAttribute("user");
-    }else{
-        response.sendRedirect("index.jsp");
-        return;
-    } %>
 <!DOCTYPE html>
 <html lang="en">
+<!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Account Information</title>
+    <title>Manage Halls</title>
+    <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
+    <!-- CSS -->
     <link href="https://mono.flatheme.net/assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="https://mono.flatheme.net/assets/plugins/owl-carousel/owl.theme.default.min.css" rel="stylesheet">
     <link href="https://mono.flatheme.net/assets/plugins/magnific-popup/magnific-popup.min.css" rel="stylesheet">
     <link href="https://mono.flatheme.net/assets/css/app.min.css" rel="stylesheet">
+    <!-- Fonts/Icons -->
     <link href="https://mono.flatheme.net/assets/plugins/font-awesome/css/all.css" rel="stylesheet">
     <link href="https://mono.flatheme.net/assets/plugins/themify/themify-icons.min.css" rel="stylesheet">
 </head>
@@ -31,11 +27,17 @@
             <a class="navbar-brand" href="https://mono.flatheme.net/">
                 <h5>NotAMC Theatres</h5>
             </a>
+            <button class="nav-toggle-btn position-center">
+                <span class="lines"></span>
+            </button><!-- toggle button will show when screen resolution is less than 992px -->
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item nav-dropdown">
                     <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
-                <% if (1 == user.getAdmin()) { %>
+                <%
+                    if (session.getAttribute("user") != null){
+                        User user = (User) session.getAttribute("user");
+                        if (1 == user.getAdmin()) { %>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
@@ -45,94 +47,73 @@
                 </li>
                 <li class="nav-item nav-dropdown" >
                     <a class="nav-link" href = "profile.jsp" > Profile </a >
+                </li >
+                <% } else{%>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="Login.html">Login</a>
                 </li>
+                <% } %>
             </ul>
-        </div>
+        </div><!-- end container -->
     </nav>
 </header>
 <div class="section">
-    <h4 class="margin-bottom-20">Your Profile</h4>
-    <br>
-    <h4 class="font-weight-light margin-bottom-30">Personal Information</h4>
-    <div class="form-row">
-        <div class="col">
-            <label>Username: </label>
-            <% out.print(user.getUsername()); %>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <label>First Name: </label>
-            <% out.print(user.getFname()); %>
-        </div>
-        <div class="col">
-            <label>Last Name: </label>
-            <% out.print(user.getLname()); %>
-        </div>
-    </div>
-
-    <div>
-        <div class="form-row">
-            <div class="col">
-                <label>Address: </label>
-                <% out.print(user.getAddress()); %>
-            </div>
-            <div class="col">
-                <label>State: </label>
-                <% out.print(user.getState()); %>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col">
-                <label>Zip Code: </label>
-                <% out.print(user.getZipCode()); %>
-            </div>
-            <div class="col">
-                <label>Country: </label>
-                <% out.print(user.getCountry()); %>
-            </div>
-
-        </div>
-        <div>
-            <label>Phone Number: </label>
-            <% out.print(user.getPNumber()); %>
-        </div>
-        <br>
-        <h4 class="font-weight-light margin-bottom-30">Billing Information</h4>
-        <div>
-            <div class="form-row">
-                <div class="col">
-                    <label>Address: </label>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <!-- Returning customer login -->
+                <div class="return-login">
+                    <form>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <label class="required">Email</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label class="required">Password</label>
+                                <input type="password" name="pw" required>
+                            </div>
+                        </div>
+                        <button class="button button-lg button-dark">Login</button>
+                    </form>
                 </div>
-                <div class="col">
-                    <label>State: </label>
-                </div>
+                <form>
+                    <h4 class="margin-bottom-20">Select New Hall</h4>
+                    <div>
+                        <label class="required">Name of Hall</label>
+                        <input type="text" name="movieName">
+                    </div>
+                    <!-- Upload image button takes you to file to choose image -->
+                    <div>
+                        <label class="required">Capacity</label>
+                        <input type="text" name="movieName">
+                    </div>
+                    <br>
+                    <br>
+                    <!-- Submit button -->
+                    <div>
+                        <a class="button button-lg button-grey button-rounded" href="#">Submit</a>
+                    </div>
+                    <!-- checkbox -->
+                    <div class="create-account-box">
+                        <div>
+                            <label class="required">Create account password</label>
+                            <input type="password" name="pw">
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-row">
-                <div class="col">
-                    <label>Zip Code:</label>
-                </div>
-                <div class="col">
-                    <label>Country: </label>
-                </div>
-
-            </div>
-            <br></br>
-            <a class="button button-lg button-grey button-rounded" href="editProfile.html">Edit Profile</a>
-
-        </div>
-        <div>
-        </div>
-
-    </div>
+        </div><!-- end row -->
+    </div><!-- end container -->
 </div>
 <footer>
+    <!-- end footer -->
 </footer>
-
+<!-- ***** JAVASCRIPTS ***** -->
+<!-- Libraries -->
 <script src="https://mono.flatheme.net/assets/plugins/jquery.min.js"></script>
 <script src="https://mono.flatheme.net/assets/plugins/bootstrap/popper.min.js"></script>
+<!-- Plugins -->
 <script src="https://mono.flatheme.net/assets/plugins/bootstrap/bootstrap.min.js"></script>
 <script src="https://mono.flatheme.net/assets/plugins/appear.min.js"></script>
 <script src="https://mono.flatheme.net/assets/plugins/easing.min.js"></script>
@@ -147,6 +128,8 @@
 <script src="https://mono.flatheme.net/assets/plugins/jquery.easypiechart.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUma4oJ7_6VbfGNdUYdv6VQ0Ph07Fz0k8"></script>
 <script src="https://mono.flatheme.net/assets/plugins/gmaps.min.js"></script>
+<!-- Scripts -->
 <script src="https://mono.flatheme.net/assets/js/functions.min.js"></script>
 </body>
+<!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
 </html>

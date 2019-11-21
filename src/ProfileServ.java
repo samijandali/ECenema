@@ -60,7 +60,7 @@ public class ProfileServ extends HttpServlet
 			out.print("</a>");
 			out.print("<ul class=\"list-horizontal-unstyled\">");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a style=\"white-space:pre\" class=\"nav-link\" href=\"userHome.html\">Home</a>");
+			out.print("<a style=\"white-space:pre\" class=\"nav-link\" href=\"index.html\">Home</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
 			out.print("<a class=\"nav-link\" href=\"Logout.html\">Logout</a>");

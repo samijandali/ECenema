@@ -1,5 +1,5 @@
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,13 +22,9 @@ public class SearchMovie extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchresult.jsp");
         HttpSession session = request.getSession(true);
         List movielist = new ArrayList();
-
-        //String searchType = "";
+        PrintWriter out = response.getWriter();
         String search = "";
-
-        //searchType = request.getParameter("searchType");
         search = request.getParameter("search");
-
         String sqlStr = null;
 
         if(search.equals("title"))
@@ -57,7 +53,7 @@ public class SearchMovie extends HttpServlet {
                     movielist.add(movie);
                 }
             } catch (SQLException s){
-                System.out.println("Value could not be found");
+                out.println("Value could not be found");
             }
         } catch(Exception e){
             e.printStackTrace();

@@ -34,7 +34,7 @@ public class editoprofilo extends HttpServlet {
 		int exp=Integer.valueOf(request.getParameter("exp"));
 		int cardno=Integer.valueOf(request.getParameter("cardno"));
 		String promo=request.getParameter("promo");
-		RequestDispatcher rd = request.getRequestDispatcher("userHome.html");
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 
 		HttpSession session=request.getSession();
 		boolean flag=false;

@@ -1,7 +1,5 @@
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.*" %>
-<%@ page import="model.User" %><%
+<%@ page import="model.User" %>
+<%
     User user = new User();
     if (session.getAttribute("user") != null){
         user = (User) session.getAttribute("user");
@@ -20,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Add Showtime</title>
+    <title>Manage Users</title>
     <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
     <!-- CSS -->
@@ -37,15 +35,18 @@
 <header>
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="https://mono.flatheme.net/">
                 <h5>NotAMC Theatres</h5>
             </a>
+            <button class="nav-toggle-btn position-center">
+                <span class="lines"></span>
+            </button><!-- toggle button will show when screen resolution is less than 992px -->
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
                     <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./Logout">Logout</a>
+                    <a class="nav-link" href="login.html">Login</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
@@ -75,88 +76,67 @@
                         <button class="button button-lg button-dark">Login</button>
                     </form>
                 </div>
-                <form action="./addShowtime">
-                    <h4 class="margin-bottom-20">Add New Showtime</h4>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="title">Movie Title</label><select class="custom-select" id="title" name="title">
-                            <%
-                                MovieService movieService = new MovieService();
-                                ArrayList<Movie> movies = null;
-                                try {
-                                    movies = movieService.getAllMovies();
-                                } catch (ClassNotFoundException | SQLException e) {
-                                    e.printStackTrace();
-                                }
-                                assert movies != null;
-                                for (Movie movie : movies) {
-                            %>
-                            <option name ="movie" value="<%out.print(movie.getTitle());%>"><% out.print(movie.getTitle());%></option>
-                            <%
-                                }%>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="day">Day</label>
-                            <select class="custom-select" id="day" name="day">
-                                <%
-                                    DayService dayService = new DayService();
-                                    ArrayList<Day> days = dayService.getAllDays();
-                                    for (Day day:
-                                            days) {
-                                %>
-                                <option value = <% out.print(day.getDate());%>>
-                                    <% out.print(day.getDate());%>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="showroom">Showroom Name</label>
-                            <select class="custom-select" id="showroom" name="showroom">
-                                <%
-                                    ShowroomService showroomService = new ShowroomService();
-                                    ArrayList<Showroom> showrooms = showroomService.getAllShowRooms();
-                                    for (Showroom showroom:
-                                            showrooms) {
-                                %>
-                                <option value ="<%out.print(showroom.getName());%>">
-                                    <%out.print(showroom.getName());%>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="time">Time Slot</label>
-                            <select name="time" id="time" class="custom-select">
-                                <%
-                                    TimeService timeService = new TimeService();
-                                    ArrayList<Time> times = timeService.getAllTimes();
-                                    for (Time time:
-                                            times) {
-                                %>
-                                <option value ="<% out.print(time.getTime());%>">
-                                    <% out.print(time.getTime());%>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                    </div>
-
-                    <br>
-                    <br>
+                <form>
+                    <h4 class="margin-bottom-20">Add New User</h4>
                     <div>
-                        <button class="button button-lg button-grey button-rounded">Submit</button>
+                        <label class="required">First Name</label>
+                        <input type="text" name="firstName">
+                    </div>
+                    <div>
+                        <label class="required">Last Name</label>
+                        <input type="text" name="lastName">
+                    </div>
+                    <div>
+                        <label class="required">Email</label>
+                        <input type="text" name="newEmail">
+                    </div>
+                    <!-- Submit button for new Username -->
+                    <a class="button button-lg button-grey button-rounded" href="#">Submit</a>
+                    <!-- Divider -->
+                    <hr class="bg-black-09">
+                    <h4 class="margin-bottom-20">Current Users</h4>
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Manage</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>John</td>
+                            <td>Smith</td>
+                            <td>name@email.com</td>
+                            <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Alexander</td>
+                            <td>Warren</td>
+                            <td>name@email.com</td>
+                            <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Melissa</td>
+                            <td>Bakos</td>
+                            <td>name@email.com</td>
+                            <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- checkbox -->
+                    <div class="create-account-box">
+                        <div>
+                            <label class="required">Create account password</label>
+                            <input type="password" name="pw">
+                        </div>
                     </div>
                 </form>
-                    <br>
-                    <br>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->

@@ -1,17 +1,15 @@
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.*" %>
-<%@ page import="model.User" %><%
-    User user = new User();
-    if (session.getAttribute("user") != null){
-        user = (User) session.getAttribute("user");
-    }
-    int admin = user.getAdmin();
-    if(admin == 0)
-    {
-        response.sendRedirect("index.jsp");
-        return; //necessary to make the redirect happen right now
-    } %>
+<%@ page import="model.User" %>
+<%
+User user = new User();
+if (session.getAttribute("user") != null){
+user = (User) session.getAttribute("user");
+}
+int admin = user.getAdmin();
+if(admin == 0)
+{
+response.sendRedirect("index.jsp");
+return; //necessary to make the redirect happen right now
+} %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -20,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Add Showtime</title>
+    <title>Manage Show Times</title>
     <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
     <!-- CSS -->
@@ -37,19 +35,22 @@
 <header>
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="https://mono.flatheme.net/">
                 <h5>NotAMC Theatres</h5>
             </a>
+            <button class="nav-toggle-btn position-center">
+                <span class="lines"></span>
+            </button><!-- toggle button will show when screen resolution is less than 992px -->
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="./Logout">Logout</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
+                    <a class="nav-link" href="About.html">About</a>
                 </li>
             </ul>
         </div><!-- end container -->
@@ -75,88 +76,35 @@
                         <button class="button button-lg button-dark">Login</button>
                     </form>
                 </div>
-                <form action="./addShowtime">
-                    <h4 class="margin-bottom-20">Add New Showtime</h4>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="title">Movie Title</label><select class="custom-select" id="title" name="title">
-                            <%
-                                MovieService movieService = new MovieService();
-                                ArrayList<Movie> movies = null;
-                                try {
-                                    movies = movieService.getAllMovies();
-                                } catch (ClassNotFoundException | SQLException e) {
-                                    e.printStackTrace();
-                                }
-                                assert movies != null;
-                                for (Movie movie : movies) {
-                            %>
-                            <option name ="movie" value="<%out.print(movie.getTitle());%>"><% out.print(movie.getTitle());%></option>
-                            <%
-                                }%>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="day">Day</label>
-                            <select class="custom-select" id="day" name="day">
-                                <%
-                                    DayService dayService = new DayService();
-                                    ArrayList<Day> days = dayService.getAllDays();
-                                    for (Day day:
-                                            days) {
-                                %>
-                                <option value = <% out.print(day.getDate());%>>
-                                    <% out.print(day.getDate());%>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="showroom">Showroom Name</label>
-                            <select class="custom-select" id="showroom" name="showroom">
-                                <%
-                                    ShowroomService showroomService = new ShowroomService();
-                                    ArrayList<Showroom> showrooms = showroomService.getAllShowRooms();
-                                    for (Showroom showroom:
-                                            showrooms) {
-                                %>
-                                <option value ="<%out.print(showroom.getName());%>">
-                                    <%out.print(showroom.getName());%>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="time">Time Slot</label>
-                            <select name="time" id="time" class="custom-select">
-                                <%
-                                    TimeService timeService = new TimeService();
-                                    ArrayList<Time> times = timeService.getAllTimes();
-                                    for (Time time:
-                                            times) {
-                                %>
-                                <option value ="<% out.print(time.getTime());%>">
-                                    <% out.print(time.getTime());%>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                    </div>
-
-                    <br>
-                    <br>
+                <form>
+                    <h4 class="margin-bottom-20">New Show Time</h4>
                     <div>
-                        <button class="button button-lg button-grey button-rounded">Submit</button>
+                        <label class="required">Name of Movie</label>
+                        <input type="text" name="movieName">
+                    </div>
+                    <!-- Upload image button takes you to file to choose image -->
+                    <div>
+                        <label class="required">Date (dd/mm/yyy)</label>
+                        <input type="text" name="movieName">
+                    </div>
+                    <div>
+                        <label class="required">Time of Showing</label>
+                        <input type="text" name="movieName">
+                    </div>
+                    <br>
+                    <br>
+                    <!-- Submit button -->
+                    <div>
+                        <a class="button button-lg button-grey button-rounded" href="#">Submit</a>
+                    </div>
+                    <!-- checkbox -->
+                    <div class="create-account-box">
+                        <div>
+                            <label class="required">Create account password</label>
+                            <input type="password" name="pw">
+                        </div>
                     </div>
                 </form>
-                    <br>
-                    <br>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->

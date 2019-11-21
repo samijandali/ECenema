@@ -2,6 +2,17 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="model.Movie" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %><%
+    User user = new User();
+    if (session.getAttribute("user") != null){
+        user = (User) session.getAttribute("user");
+    }
+    int admin = user.getAdmin();
+    if(admin == 0)
+    {
+        response.sendRedirect("index.jsp");
+        return; //necessary to make the redirect happen right now
+    } %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -32,14 +43,14 @@
             </a>
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="./Logout">Logout</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="About.html">About</a>
+                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
             </ul>
         </div><!-- end container -->
@@ -49,23 +60,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8">
-                <!-- Returning customer login -->
-                <div class="return-login">
-                    <form>
-                        <input type="hidden" id="add" name="add" value="add">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <label class="required">Email</label>
-                                <input type="email" name="email" required>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <label class="required">Password</label>
-                                <input type="password" name="pw" required>
-                            </div>
-                        </div>
-                        <button class="button button-lg button-dark">Login</button>
-                    </form>
-                </div>
                 <form action="./movieServlet">
                     <h4 class="margin-bottom-20">Add New Movie</h4>
                     <input type="hidden" name="hidden" value="add">

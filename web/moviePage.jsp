@@ -42,7 +42,7 @@
             </button><!-- toggle button will show when screen resolution is less than 992px -->
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <%
                     if (session.getAttribute("user") != null){
@@ -91,17 +91,9 @@
 
 
                 <!-- Product Rating -->
-                <div class="product-rating margin-bottom-20">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
+                <div class="margin-bottom-20">
+                   <h6>Rating:</h6> <% out.print(movie.getRating());%>
                 </div>
-                <!-- Product text -->
-
-                <p><% out.print(movie.getSummary()); %>
-                </p>
 
                 <!-- Order -->
                 <div class="margin-top-20 margin-bottom-20">
@@ -122,7 +114,7 @@
         <br>
         <br>
         <div>
-            <label for="ttitle">Showtimes</label><select style="width: 220px" class="custom-select" id="showtime" name="showtime">
+            <label for="showtime">Showtimes</label><select style="width: 220px" class="custom-select" id="showtime" name="showtime">
             <%
                 ShowtimeService showtimeService = new ShowtimeService();
                 ArrayList<String[]> showtimes = showtimeService.getAllShowtimes(movie.getTitle());
@@ -159,6 +151,10 @@
                         <h6 class="heading-uppercase">Summary:</h6>
                         <p><% out.print(movie.getSummary());%></p>
                     </div>
+                    <div class="margin-bottom-20">
+                        <h6 class="heading-uppercase">Genre:</h6>
+                        <p><% out.print(movie.getGenre());%></p>
+                    </div>
                     <div>
                         <h6 class="heading-uppercase">Cast:</h6>
                         <p><% out.print(movie.getCast());%></p>
@@ -172,11 +168,6 @@
                     <div>
                         <h6 class="heading-uppercase">Director:</h6>
                         <p><% out.print(movie.getDirector());%></p>
-                    </div>
-                    <br>
-                    <div>
-                        <h6 class="heading-uppercase">Rating:</h6>
-                        <p><% out.print(movie.getRating());%></p>
                     </div>
                     <br>
                     <div>

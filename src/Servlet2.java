@@ -26,7 +26,7 @@ public class Servlet2 extends HttpServlet {
 		if(session!=null) {
 			String name=(String)session.getAttribute("user");
 			out.print("Welcome to our cinema "+name);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/userHome.html");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
 			rd.include(request, response);
 
 		}

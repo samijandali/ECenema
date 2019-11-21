@@ -18,7 +18,15 @@ public class User {
     private int admin;
     private String activity;
 
+    private static User obj;
+
     public User() {
+    }
+
+    public static synchronized User getInstance(){
+        if(obj == null)
+            obj = new User();
+        return obj;
     }
 
     public User(

@@ -16,7 +16,7 @@ return; //necessary to make the redirect happen right now
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Mono - Creative Multi-Purpose HTML5 Template</title>
+    <title>Admin Page</title>
     <!-- Favicon -->
     <link href="https://mono.flatheme.net/assets/images/favicon.png" rel="shortcut icon">
     <!-- CSS -->
@@ -61,11 +61,11 @@ return; //necessary to make the redirect happen right now
                 <div class="col-12 col-md-12 text-right">
                     <nav aria-label="breadcrumb">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
+                            <li class="breadcrumb-item"><a href="manageUsers.jsp">Manage Users</a></li>
                             <li class="breadcrumb-item"><a href="manageMovies.jsp">Manage Movies</a></li>
-                            <li class="breadcrumb-item"><a href="managetimes.html">Manage Showtimes</a></li>
-                            <li class="breadcrumb-item"><a href="manageHalls.html">Manage Halls</a></li>
-                            <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
+                            <li class="breadcrumb-item"><a href="addShowtime.jsp">Manage Showtimes</a></li>
+                            <li class="breadcrumb-item"><a href="manageHalls.jsp">Manage Halls</a></li>
+                            <li class="breadcrumb-item"><a href="managePromos.jsp">Manage Promos</a></li>
                             <li class="breadcrumb-item"><a href="reports.html">View Reports</a></li>
                         </ul>
                     </nav>
@@ -85,17 +85,17 @@ return; //necessary to make the redirect happen right now
                         <div class="col-12 col-sm-6">
                             <label>Movies Available</label>
                             <br>
-                            <label>12</label>
+                            <label>9</label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Running Promotions</label>
                             <br>
-                            <label>6</label>
+                            <label>0</label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Registered Users</label>
                             <br>
-                            <label>28</label>
+                            <label>37</label>
                         </div>
                     </div>
                 </form>

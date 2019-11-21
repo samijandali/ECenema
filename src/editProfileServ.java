@@ -72,7 +72,7 @@ public class editProfileServ extends HttpServlet {
 						stmt.executeUpdate("update users set activity='"+active+"' where username='"+userid+"'");
 						session.setMaxInactiveInterval(10*60);
 						flag=true;
-						response.sendRedirect("./userHome.html");	
+						response.sendRedirect("./index.jsp");
 					} else if("1".contentEquals(rs.getString(14))) {
 						address = rs.getString(7);
 						zipcode = rs.getString(9);

@@ -12,11 +12,11 @@ import java.sql.*;
 @WebServlet("/editMovieServ")
 public class editMovieServ extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     //   doGet(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doGet(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  IOException {
 
         PrintWriter out=response.getWriter();
         String title = request.getParameter("title");

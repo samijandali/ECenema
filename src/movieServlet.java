@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
 /**
  * Servlet implementation class Servlet1
  */
@@ -21,6 +19,7 @@ public class movieServlet extends HttpServlet {
     private static String salt = "ssshhhhhhhhhhh!!!!";
     private static final long serialVersionUID = 1L;
     private MovieService movieService = new MovieService();
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
@@ -47,25 +46,43 @@ public class movieServlet extends HttpServlet {
             String link = request.getParameter("link");
             int available = Integer.parseInt(request.getParameter("available"));
             try {
-                if (movieService.exists(title)) {
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageMovies.jsp");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from movie");
+                while (rs.next()) {
+                    if (rs.getString("title").equalsIgnoreCase(title)) {
+                        out.println("<font color=red>Title already exits, please try another</font>");
+                        rd.include(request, response);
+                        return;
+                    }
+                }
+            }
+
+                /*if (movieService.exists(title)) {
                     out.println("<font color=red>Movie already exists, please check your entry</font>");
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageMovies.jsp");
                     rd.include(request, response);
-                    return;
-                }
-            } catch (ClassNotFoundException | SQLException e) {
+                    return;*/
+            //if was here
+            catch (SQLException e) {
                 e.printStackTrace();
-            }
+            } //if moved here
             try {
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO movie (title, summary, genre, rating, length, cast, director, producer, review1, review2, review3, link, available) VALUES ('" + title + "', '" + summary + "', '" + genre + "', '" + rating + "', '" + length + "', '" + cast + "', '" + director + "', '" + producer + "', '" + review1 + "', '" + review2 + "', '" + review3 + "', '" + link + "', '" + available + "')");
+                out.println("<font color=red>Movie Successfully Added!</font>");
+                rd.include(request, response);
             } catch (Exception p) {
                 out.print(p);
             }
-            response.sendRedirect("./index.jsp");
-        }else{
+            //response.sendRedirect("./index.jsp");
+        }
+
+        else{
             try {
                 String title = request.getParameter("isTitles");
                 Class.forName("com.mysql.cj.jdbc.Driver");
