@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: commons-io:commons-io:2.6">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.6/commons-io-2.6.jar!/" />
+      <root url="jar://$USER_HOME$/activation-1.1.1.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.6/commons-io-2.6-javadoc.jar!/" />

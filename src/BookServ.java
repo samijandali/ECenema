@@ -24,7 +24,7 @@ public class BookServ extends HttpServlet {
         PrintWriter out = response.getWriter();
         String urlWithQueryString = request.getRequestURL().append("").append(
                 request.getQueryString()).toString();
-        String title = urlWithQueryString.replace("http://localhost:8080/ECenema_war_exploded/BookServmovie=", "");
+        String title = urlWithQueryString.replace("http://localhost:8080/ECenema_war/BookServmovie=", "");
         title = title.replace("%20", " ");
         MovieService movieService = new MovieService();
         Movie movie = new Movie();

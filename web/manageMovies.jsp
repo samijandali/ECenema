@@ -2,6 +2,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="model.Movie" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -31,15 +32,26 @@
                 <h5>NotAMC Theatres</h5>
             </a>
             <ul class="list-horizontal-unstyled">
-                <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                <%
+                    if (session.getAttribute("user") != null){
+                        User user = (User) session.getAttribute("user");
+                        if (1 == user.getAdmin()) { %>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
-                <!-- dropdown link 8 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="About.html">About</a>
+                <% } %>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="./Logout">Logout</a>
+                </li>
+                <li class="nav-item nav-dropdown" >
+                    <a class="nav-link" href = "profile.jsp" > Profile </a >
+                </li >
+                <% } else{%>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link" href="Login.html">Login</a>
+                </li>
+                <% } %>
                 </li>
             </ul>
         </div><!-- end container -->

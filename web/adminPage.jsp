@@ -63,7 +63,7 @@ return; //necessary to make the redirect happen right now
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
                             <li class="breadcrumb-item"><a href="manageMovies.jsp">Manage Movies</a></li>
-                            <li class="breadcrumb-item"><a href="managetimes.html">Manage Showtimes</a></li>
+                            <li class="breadcrumb-item"><a href="addShowtime.jsp">Manage Showtimes</a></li>
                             <li class="breadcrumb-item"><a href="manageHalls.html">Manage Halls</a></li>
                             <li class="breadcrumb-item"><a href="manageUsers.html">Manage Users</a></li>
                             <li class="breadcrumb-item"><a href="reports.html">View Reports</a></li>
@@ -85,17 +85,17 @@ return; //necessary to make the redirect happen right now
                         <div class="col-12 col-sm-6">
                             <label>Movies Available</label>
                             <br>
-                            <label>12</label>
+                            <label>9</label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Running Promotions</label>
                             <br>
-                            <label>6</label>
+                            <label>0</label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Registered Users</label>
                             <br>
-                            <label>28</label>
+                            <label>37</label>
                         </div>
                     </div>
                 </form>

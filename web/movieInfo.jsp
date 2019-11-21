@@ -39,10 +39,10 @@
             </button><!-- toggle button will show when screen resolution is less than 992px -->
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="Login.html">Login</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">

@@ -40,9 +40,7 @@ public class UserServlet extends HttpServlet {
 
         try {
             processRequest(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

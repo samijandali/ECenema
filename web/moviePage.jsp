@@ -42,7 +42,7 @@
             </button><!-- toggle button will show when screen resolution is less than 992px -->
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <%
                     if (session.getAttribute("user") != null){
@@ -159,6 +159,16 @@
                         <h6 class="heading-uppercase">Summary:</h6>
                         <p><% out.print(movie.getSummary());%></p>
                     </div>
+                    <div>
+                        <h6 class="heading-uppercase">Cast:</h6>
+                        <p><% out.print(movie.getCast());%></p>
+                    </div>
+                    <br>
+                    <div class="margin-bottom-20">
+                        <h6 class="heading-uppercase">Genre:</h6>
+                        <p><% out.print(movie.getGenre());%></p>
+                    </div>
+                    <br>
                     <div>
                         <h6 class="heading-uppercase">Cast:</h6>
                         <p><% out.print(movie.getCast());%></p>

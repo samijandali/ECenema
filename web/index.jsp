@@ -108,7 +108,7 @@
                             <div class="portfolio-item" style="position: absolute; left: 369px; top: 304px;">
                                 <div class="portfolio-box">
                                     <div class="portfolio-img">
-                                        <img src="assets/images/Error.jpg" alt="">
+                                        <img src="assets/images/error.jpg" alt="">
                                     </div>
                                     <div class="portfolio-title">
                                         <div>

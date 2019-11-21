@@ -108,14 +108,12 @@ public class RegistrationServ extends HttpServlet {
 		p.put("mail.smtp.port", "587");
 		p.put("mail.smtp.auth", "true");
 		p.put("mail.smtp.starttls.enable", "true");
-		System.out.println("Setup server");
 
 		Session session = Session.getInstance(p, new javax.mail.Authenticator(){
 			protected PasswordAuthentication getPasswordAuthentication(){
 				return new PasswordAuthentication("miguelangello96@gmail.com","pchepwzyepkhdoig");
 			}//PassAuth
 		});//mailAuth
-		System.out.println("Creating email session");
 
 		try
 		{
@@ -126,28 +124,17 @@ public class RegistrationServ extends HttpServlet {
 			);
 			msg.setSubject("NotAMC Theatre Confirmation Message");
 			msg.setText("Congrats on signing up with our amazing Blockbuster theatre.");
-
-			System.out.println("Sending email");
-
 			Transport.send(msg);
-
-			System.out.println("Complete");
-
 			rd.include(request, response);
 		}
-
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 
 	}//main
-//class
 
-
-
-
-
+	
 	public static String encrypt(String strToEncrypt, String secret)
 	{
 		try
@@ -170,10 +157,7 @@ public class RegistrationServ extends HttpServlet {
 		}
 		return null;
 	}
-
-
-
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
