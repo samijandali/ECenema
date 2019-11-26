@@ -1,3 +1,15 @@
+<%@ page import="model.User" %>
+<%
+    User user = new User();
+    if (session.getAttribute("user") != null){
+        user = (User) session.getAttribute("user");
+    }
+    int admin = user.getAdmin();
+    if(admin == 0)
+    {
+        response.sendRedirect("index.jsp");
+        return; //necessary to make the redirect happen right now
+    } %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
@@ -34,11 +46,11 @@
                     <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Logout.html">Logout</a>
+                    <a class="nav-link" href="./Logout">Logout</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.jsp">Profile</a>
+                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
             </ul>
         </div><!-- end container -->
@@ -49,37 +61,23 @@
         <div class="row">
             <div class="col-12 col-lg-8">
                 <!-- Returning customer login -->
-                <div class="return-login">
-                    <form>
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <label class="required">Email</label>
-                                <input type="email" name="email" required>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <label class="required">Password</label>
-                                <input type="password" name="pw" required>
-                            </div>
-                        </div>
-                        <button class="button button-lg button-dark">Login</button>
-                    </form>
-                </div>
-                <form>
-                    <h4 class="margin-bottom-20">Add New User</h4>
+                <form action ="./newAdminServ">
+                    <h4 class="margin-bottom-20">Add New Admin User</h4>
                     <div>
-                        <label class="required">First Name</label>
-                        <input type="text" name="firstName">
+                        <label class="required">Username</label>
+                        <input type="text" name="username">
                     </div>
                     <div>
-                        <label class="required">Last Name</label>
-                        <input type="text" name="lastName">
+                        <label class="required">Password</label>
+                        <input type="text" name="password">
                     </div>
                     <div>
                         <label class="required">Email</label>
-                        <input type="text" name="newEmail">
+                        <input type="email" name="email">
                     </div>
                     <!-- Submit button for new Username -->
-                    <a class="button button-lg button-grey button-rounded" href="#">Submit</a>
+                    <button class="button button-lg button-grey button-rounded">Submit</button>
+                </form>
                     <!-- Divider -->
                     <hr class="bg-black-09">
                     <h4 class="margin-bottom-20">Current Users</h4>
@@ -118,13 +116,6 @@
                         </tbody>
                     </table>
                     <!-- checkbox -->
-                    <div class="create-account-box">
-                        <div>
-                            <label class="required">Create account password</label>
-                            <input type="password" name="pw">
-                        </div>
-                    </div>
-                </form>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
