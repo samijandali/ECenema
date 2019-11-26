@@ -38,7 +38,7 @@
                 <%
                     if (session.getAttribute("user") != null){
                         User user = (User) session.getAttribute("user");
-                    if (1 == user.getAdmin()) { %>
+                    if (1 == user.getInstance().getAdmin()) { %>
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>

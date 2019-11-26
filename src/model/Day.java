@@ -4,6 +4,9 @@ public class Day {
     int id;
     String date;
 
+    public Day(){
+
+    }
     public Day(int id, String date) {
         this.id = id;
         this.date = date;
