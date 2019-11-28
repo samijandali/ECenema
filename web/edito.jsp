@@ -76,18 +76,6 @@
 							<input type="text" id= "lname" name="lname" value="<% out.print(user.getLname());%>">
 						</div>
 					</div>
-					<div>
-						<label>Current Password</label>
-						<input type="password" name="currentPass">
-					</div>
-					<div>
-						<label>New Password</label>
-						<input type="password" name="newPass">
-					</div>
-					<div>
-						<label>Confirm Password</label>
-						<input type="password" name="confirmPass">
-					</div>
 					<br>
 
 					<div class="form-row">

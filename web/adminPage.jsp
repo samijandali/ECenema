@@ -3,12 +3,12 @@
     if (session.getAttribute("user") != null){
         user = (User) session.getAttribute("user");
     }
-int admin = user.getAdmin();
-if(admin == 0)
-{
-response.sendRedirect("index.jsp");
-return; //necessary to make the redirect happen right now
-} %>
+    int admin = user.getAdmin();
+    if(admin == 0)
+    {
+        response.sendRedirect("index.jsp");
+        return; //necessary to make the redirect happen right now
+    } %>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2019 02:38:18 GMT -->
 <head>
@@ -65,7 +65,7 @@ return; //necessary to make the redirect happen right now
                             <li class="breadcrumb-item"><a href="manageMovies.jsp">Manage Movies</a></li>
                             <li class="breadcrumb-item"><a href="addShowtime.jsp">Manage Showtimes</a></li>
                             <li class="breadcrumb-item"><a href="manageHalls.jsp">Manage Halls</a></li>
-                            <li class="breadcrumb-item"><a href="managePromos.jsp">Manage Promos</a></li>
+                            <li class="breadcrumb-item"><a href="managePromos.jsp">Manage Promotions</a></li>
                             <li class="breadcrumb-item"><a href="reports.html">View Reports</a></li>
                         </ul>
                     </nav>
