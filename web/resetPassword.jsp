@@ -63,7 +63,7 @@
                 %>
                 <br>
                 <h4 class="font-weight-light margin-bottom-30">Personal Information</h4>
-                <form action="./resetPassword">
+                <form action="./ResetPassword">
                     <div class="form-row">
                         <div class="col">
                             <label>Current Password</label>

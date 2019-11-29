@@ -122,7 +122,7 @@
 								temp = Long.toString(payment);
 								temp = temp.substring(temp.length() - 4);
 						%>
-						<option name ="movie" value="<%out.print(temp);%>">**** **** **** <% out.print(temp);%></option>
+						<option name ="paydef" value="<%out.print(Long.toString(payment));%>">**** **** **** <% out.print(temp);%></option>
 						<%
 							}%>
 					</select>
@@ -130,7 +130,7 @@
 
 					<button type="submit" value="submit" class="button button-lg button-grey button-rounded">Submit</button>
 				</form>
-				<form>
+				<form action="./editPay">
 				<!-- Divider -->
 				<hr class="bg-black-09">
 				<br>
@@ -147,7 +147,7 @@
 							temp = Long.toString(payment);
 							temp = temp.substring(temp.length() - 4);
 					%>
-					<option name ="movie" value="<%out.print(temp);%>">**** **** **** <% out.print(temp);%></option>
+					<option name ="movie" value="<%out.print(Long.toString(payment));%>">**** **** **** <% out.print(temp);%></option>
 					<%
 						}%>
 				</select>
@@ -155,6 +155,58 @@
 					<button type="submit" value="submit" class="button button-lg button-grey button-rounded">Submit</button>
 				</form>
 				<br>
+
+				<hr class="bg-black-09">
+				<br>
+				<br>
+
+				<form action="./addcard">
+					<div class="form-row">
+						<div class="col">
+							<label>Card Number (No spaces/Special Characters)</label>
+							<input type="text" id="newcard" name ="newcard">
+						</div>
+					</div>
+					<br>
+					<div class="form-row">
+						<div class="col">
+							<label>CVV</label>
+							<input type="text" id="cvv" name ="cvv">
+						</div>
+						<div class="col">
+							<label>Expiration Date (MM/YY)</label>
+							<input type="text" id="exp" name ="exp">
+						</div>
+					</div>
+					<br>
+					<div class="form-row">
+						<div class="col">
+							<label>Address</label>
+							<input type="text"
+								   id="newadd" name="newadd" class="form-control"/> <br />
+						</div>
+						<div class="col">
+							<label>State</label>
+							<input type="text"
+								   id="newstate" name="newstate" class="form-control"/> <br />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<label>New Zip Code</label>
+							<input type="text"
+								   id="newzip" name="newzip" class="form-control"/> <br />
+						</div>
+						<div class="col">
+							<label>Country</label>
+							<input type="text"
+								   id="newcoun" name="newcoun" class="form-control"/> <br />
+						</div>
+					</div>
+
+					<button type="submit" value="submit" class="button button-lg button-grey button-rounded">Submit</button>
+				</form>
+				<hr class="bg-black-09">
 				<br>
 				<br>
 				<a class="button button-lg button-dark" href="resetPassword.jsp">Reset Password</a>

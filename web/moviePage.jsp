@@ -118,15 +118,16 @@
             <%
                 ShowtimeService showtimeService = new ShowtimeService();
                 ArrayList<String[]> showtimes = showtimeService.getAllShowtimes(movie.getTitle());
+                ArrayList<Integer> ids = showtimeService.getAllIDs(movie.getTitle());
                 assert showtimes != null;
-                for (String[] showtime : showtimes) {
+                for (int i = 0; i<ids.size(); i++) {
                     String temp = "";
-                    temp = Arrays.toString(showtime);
+                    temp = Arrays.toString(showtimes.get(i));
                     temp = temp.replace("[", "");
                     temp = temp.replace("]", "");
                     temp = temp.replace(",", "");
             %>
-            <option name ="movie" value="<%out.print(temp);%>"><% out.print(temp);%></option>
+            <option name ="movie" value="<%out.print(ids.get(i));%>"><% out.print(temp);%></option>
             <%
                 }%>
         </select>

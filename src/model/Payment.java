@@ -1,7 +1,7 @@
 package model;
 
 public class Payment {
-    long cardNo;
+    String cardNo;
     int userID;
     int exp;
     int cvv;
@@ -14,7 +14,7 @@ public class Payment {
     public Payment(){
 
     }
-    public Payment(long cardNo, int userID, int exp, int cvv, String address, String state, String zipcode, String country, int defPay) {
+    public Payment(String cardNo, int userID, int exp, int cvv, String address, String state, String zipcode, String country, int defPay) {
         this.cardNo = cardNo;
         this.userID = userID;
         this.exp = exp;
@@ -26,11 +26,11 @@ public class Payment {
         this.defPay = defPay;
     }
 
-    public long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 

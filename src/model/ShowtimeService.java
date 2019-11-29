@@ -28,6 +28,20 @@ public class ShowtimeService {
         return showtimes;
     }
 
+    public ArrayList<Integer> getAllIDs(String title) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet rs=stmt.executeQuery("SELECT showtime.id FROM showtime " +
+                "INNER JOIN movie ON showtime.movieID = movie.id " +
+                "WHERE movie.title = '"+title+"'");
+        ArrayList<Integer> ids = new ArrayList<>();
+        while(rs.next()) {
+            ids.add(rs.getInt(1));
+        }
+        return ids;
+    }
+
     public boolean exists(String name, String day, String time) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
