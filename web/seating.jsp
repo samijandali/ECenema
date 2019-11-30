@@ -5,6 +5,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.*" %>
 <%@ page import="java.util.Arrays" %>
+<% Movie movie = (Movie) session.getAttribute("movie"); %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Product-Single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Sep 2019 23:57:47 GMT -->
@@ -78,6 +79,46 @@
 
 <!-- end Product Content -->
 <!-- Product Tab content -->
+
+<div class = "seating-checkout__header">
+    <div class="container">
+        <div class="seating-checkout u-cf media">
+            <div aria-hidden="true" class="media-left media-top">
+                <picture class="Picture--rounded">
+                    <style>
+                        #circle {
+                            border-radius: 50%;
+                            width:100px;
+                            height:100px;
+                        }
+                    </style>
+                    <img src="assets/images/<% out.print(movie.getTitle());%>.jpg" alt="" id="circle">
+                </picture>
+            </div>
+            <div class="media-body">
+                <a class="MovieTitleHeader-title" href="http://localhost:8080/ECenema_war_exploded/BookServ?movie=<% out.print(movie.getTitle());%>#">
+                    <h2 class="MovieTitleHeader-title--shortened-title"><% out.print(movie.getTitle());%></h2>
+                </a>
+                <div class="txt--tiny MovieTitleHeader-list txt--medium u-uppercase">
+                    <span>
+                        "Theatre Name here"
+                        <span class="u-separator" aria-hidden="true">
+                            |
+                        </span>
+                    </span>
+                    <span>
+                        "Time of movie here"
+                        <span class="u-separator" aria-hidden="true">
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="bg-black-09">
+<br>
+
 <div class="section no-padding-top">
     <div class="container">
         <div class="product-tab">
@@ -94,13 +135,20 @@
                     </div>
                     <div class="booking-details">
                         <h2>Booking Details</h2>
+                        <img src="assets/images/SeatingChartNum.jpg" usemap="#image-map">
                         <h3> Selected Seats (<span id="counter">0</span>):</h3>
                         <ul id="selected-seats">
                         </ul>
                         Total: <b>$<span id="total">0</span></b>
-                        <button class="checkout-button">Checkout &raquo;</button>
+                        <br>
+                        <br>
+                        <button class="button button-lg button-dark">Continue &raquo;</button>
                         <div id="legend"></div>
                     </div>
+                    <map name="image-map">
+                        <area target="" alt="" title="" href="" coords="190,109,161,84" shape="rect">
+                        <area target="" alt="" title="" href="" coords="197,87,224,108" shape="rect">
+                    </map>
                     <script>
                         var firstSeatLabel = 1;
 

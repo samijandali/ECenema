@@ -91,47 +91,38 @@
 
 
                 <!-- Product Rating -->
-                <div class="margin-bottom-20">
-                   <h6>Rating:</h6> <% out.print(movie.getRating());%>
+                <div>
+                   <h6>Rating: <% out.print(movie.getRating());%> </h6>
                 </div>
-
+                <form action="./PassShowtime">
                 <!-- Order -->
-                <div class="margin-top-20 margin-bottom-20">
-                    <div class="product-quantity margin-right-30">
-                        <button class="button-circle button-circle-xs button-circle-grey dec"><i class="ti-minus"></i></button>
-                        <input type="text" name="quantity" id="quantity" value="1">
-                        <button class="button-circle button-circle-xs button-circle-grey inc"><i class="ti-plus"></i></button>
-                    </div>
-                    <a class="button button-lg button-dark" href="#">Add to cart</a>
+                <div>
+                    <label for="showtime">Showtimes</label><select style="width: 220px" class="custom-select" id="showtime" name="showtime">
+                    <%
+                        ShowtimeService showtimeService = new ShowtimeService();
+                        ArrayList<String[]> showtimes = showtimeService.getAllShowtimes(movie.getTitle());
+                        ArrayList<Integer> ids = showtimeService.getAllIDs(movie.getTitle());
+                        assert showtimes != null;
+                        for (int i = 0; i<ids.size(); i++) {
+                            String temp = "";
+                            temp = Arrays.toString(showtimes.get(i));
+                            temp = temp.replace("[", "");
+                            temp = temp.replace("]", "");
+                            temp = temp.replace(",", "");
+                    %>
+                    <option name ="movie" value="<%out.print(ids.get(i));%>"><% out.print(temp);%></option>
+                    <%
+                        }%>
+                </select>
                 </div>
-                <img src="assets/images/seating.png" usemap="#image-map">
+                <div class="margin-top-20 margin-bottom-20">
+                    <button class="button button-lg button-dark">Book a seat</button>
+                </div>
+                </form>
             </div>
         </div><!-- end row -->
-        <map name="image-map">
-            <area target="" alt="" title="" href="" coords="190,109,161,84" shape="rect">
-            <area target="" alt="" title="" href="" coords="197,87,224,108" shape="rect">
-        </map>
         <br>
         <br>
-        <div>
-            <label for="showtime">Showtimes</label><select style="width: 220px" class="custom-select" id="showtime" name="showtime">
-            <%
-                ShowtimeService showtimeService = new ShowtimeService();
-                ArrayList<String[]> showtimes = showtimeService.getAllShowtimes(movie.getTitle());
-                ArrayList<Integer> ids = showtimeService.getAllIDs(movie.getTitle());
-                assert showtimes != null;
-                for (int i = 0; i<ids.size(); i++) {
-                    String temp = "";
-                    temp = Arrays.toString(showtimes.get(i));
-                    temp = temp.replace("[", "");
-                    temp = temp.replace("]", "");
-                    temp = temp.replace(",", "");
-            %>
-            <option name ="movie" value="<%out.print(ids.get(i));%>"><% out.print(temp);%></option>
-            <%
-                }%>
-        </select>
-        </div>
     </div><!-- end container -->
 </div>
 <iframe width="1206" height="678" src="<% out.print(movie.getLink()); %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

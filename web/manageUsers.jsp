@@ -46,7 +46,7 @@
                     <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="./Logout">Logout</a>
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
@@ -61,82 +61,61 @@
         <div class="row">
             <div class="col-12 col-lg-8">
                 <!-- Returning customer login -->
-                <div class="return-login">
-                    <form>
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <label class="required">Email</label>
-                                <input type="email" name="email" required>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <label class="required">Password</label>
-                                <input type="password" name="pw" required>
-                            </div>
-                        </div>
-                        <button class="button button-lg button-dark">Login</button>
-                    </form>
-                </div>
-                <form>
-                    <h4 class="margin-bottom-20">Add New User</h4>
+                <form action ="./newAdminServ">
+                    <h4 class="margin-bottom-20">Add New Admin User</h4>
                     <div>
-                        <label class="required">First Name</label>
-                        <input type="text" name="firstName">
+                        <label class="required">Username</label>
+                        <input type="text" name="username">
                     </div>
                     <div>
-                        <label class="required">Last Name</label>
-                        <input type="text" name="lastName">
+                        <label class="required">Password</label>
+                        <input type="text" name="password">
                     </div>
                     <div>
                         <label class="required">Email</label>
-                        <input type="text" name="newEmail">
+                        <input type="email" name="email">
                     </div>
                     <!-- Submit button for new Username -->
-                    <a class="button button-lg button-grey button-rounded" href="#">Submit</a>
-                    <!-- Divider -->
-                    <hr class="bg-black-09">
-                    <h4 class="margin-bottom-20">Current Users</h4>
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Manage</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>John</td>
-                            <td>Smith</td>
-                            <td>name@email.com</td>
-                            <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Alexander</td>
-                            <td>Warren</td>
-                            <td>name@email.com</td>
-                            <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Melissa</td>
-                            <td>Bakos</td>
-                            <td>name@email.com</td>
-                            <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!-- checkbox -->
-                    <div class="create-account-box">
-                        <div>
-                            <label class="required">Create account password</label>
-                            <input type="password" name="pw">
-                        </div>
-                    </div>
+                    <button class="button button-lg button-grey button-rounded">Submit</button>
                 </form>
+                <!-- Divider -->
+                <hr class="bg-black-09">
+                <h4 class="margin-bottom-20">Current Users</h4>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Manage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>John</td>
+                        <td>Smith</td>
+                        <td>name@email.com</td>
+                        <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Alexander</td>
+                        <td>Warren</td>
+                        <td>name@email.com</td>
+                        <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Melissa</td>
+                        <td>Bakos</td>
+                        <td>name@email.com</td>
+                        <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- checkbox -->
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
