@@ -38,10 +38,17 @@ public class addShowtime extends HttpServlet {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
                 Statement stmt = con.createStatement();
+                Statement stmt1 = con.createStatement();
+                Statement stmt2 = con.createStatement();
                 int success = stmt.executeUpdate("INSERT INTO showtime (timeID, movieID, showroomID, dayID) values ((SELECT id from timeslot where time = '"+ time+"'), (SELECT id from movie where title = '"+ title+"'), (SELECT id from showroom where name = '"+showroom+"'),(SELECT id from day where day = '"+ day+"'))");
+                ResultSet rs = stmt1.executeQuery("SELECT nbOfSeats FROM showroom INNER JOIN showtime ON showroom.id = showtime.showroomID WHERE showtime.id = (SELECT id FROM showtime ORDER BY id DESC LIMIT 1)");
+                ResultSet rs1 = stmt2.executeQuery("SELECT id FROM showtime WHERE showtime.id = (SELECT id FROM showtime ORDER BY id DESC LIMIT 1)");
                 if(success == 1){
-                    out.println("<font color=red> Showtime got added successfully</font>");
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/addShowtime.jsp");
+                    if(rs.next()){
+                    request.setAttribute("seats", rs.getInt(1));}
+                    if(rs1.next()){
+                    request.setAttribute("showtimeID", rs1.getInt(1));}
+                    RequestDispatcher rd = request.getRequestDispatcher("CreateSeats");
                     rd.include(request, response);
                     return;
                 }else{

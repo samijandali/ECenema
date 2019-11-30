@@ -17,6 +17,7 @@ public class User {
     private String promo;
     private int admin;
     private String activity;
+    private int suspended;
 
     private static User obj;
 
@@ -31,7 +32,7 @@ public class User {
 
     public User(
             int id, String username, String password, String fname, String lname, String email, String address, String state, String zipcode,
-            String country, String pnumber, String gender, String promo, int admin, String activity) {
+            String country, String pnumber, String gender, String promo, int admin, String activity, int suspended) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -47,6 +48,7 @@ public class User {
         this.gender = gender;
         this.promo = promo;
         this.activity = activity;
+        this.suspended = suspended;
     }
 
     public String getUsername() {
@@ -166,5 +168,13 @@ public class User {
 
     public void setActivity(String activity) {
         this.activity = activity;
+    }
+
+    public int getSuspended() {
+        return suspended;
+    }
+
+    public void setSuspended(int suspended) {
+        this.suspended = suspended;
     }
 }

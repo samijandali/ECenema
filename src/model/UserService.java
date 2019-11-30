@@ -4,7 +4,6 @@ import java.sql.*;
 
 public class UserService extends User{
     private int id;
-    private String username;
     private String password;
     private String fname;
     private String lname;
@@ -18,6 +17,7 @@ public class UserService extends User{
     private String promo;
     private int admin;
     private String activity;
+    private int suspended;
 
     public User getUser(String username) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
@@ -39,8 +39,9 @@ public class UserService extends User{
             promo = resultSet.getString(13);
             admin = resultSet.getInt(14);
             activity = resultSet.getString(15);
+            suspended = resultSet.getInt(16);
         }
-        return new User(id, username, password, fname, lname, email, address, state, zipcode, country, pnumber, gender, promo, admin, activity);
+        return new User(id, username, password, fname, lname, email, address, state, zipcode, country, pnumber, gender, promo, admin, activity, suspended);
 
     }
 }
