@@ -44,14 +44,21 @@ public class Login extends HttpServlet {
 			User trial = (User) request.getAttribute("user");
 			if (encrypt(password, secretKey).equals(trial.getPassword())) {
 				session.setAttribute("user", trial);
-				if (0 == trial.getAdmin()) {
-					stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
-					session.setMaxInactiveInterval(10 * 60);
-					response.sendRedirect("./index.jsp");
-				} else if (1 == trial.getAdmin()) {
-					stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
-					session.setMaxInactiveInterval(10 * 60);
-					response.sendRedirect("./adminPage.jsp");
+				if(0 == trial.getSuspended()) {
+					if (0 == trial.getAdmin()) {
+						stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
+						session.setMaxInactiveInterval(10 * 60);
+						response.sendRedirect("./index.jsp");
+					} else if (1 == trial.getAdmin()) {
+						stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
+						session.setMaxInactiveInterval(10 * 60);
+						response.sendRedirect("./adminPage.jsp");
+					}
+				} else {
+					request.removeAttribute("user");
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
+					out.println("<font color=red>User is suspended. Contact an admin for more information.</font>");
+					rd.include(request, response);
 				}
 			}else{
 				request.removeAttribute("user");

@@ -22,8 +22,7 @@ public class BookServ extends HttpServlet {
     MovieService movieService = new MovieService();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String urlWithQueryString = request.getRequestURL().append("").append(
-                request.getQueryString()).toString();
+        String urlWithQueryString = request.getRequestURL().append("").append(request.getQueryString()).toString();
         String title = urlWithQueryString.replace("http://localhost:8080/ECenema_war_exploded/BookServmovie=", "");
         title = title.replace("%20", " ");
         MovieService movieService = new MovieService();

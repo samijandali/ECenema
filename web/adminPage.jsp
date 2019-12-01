@@ -61,7 +61,7 @@
                 <div class="col-12 col-md-12 text-right">
                     <nav aria-label="breadcrumb">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="manageUsers.jsp">Manage Users</a></li>
+                            <li class="breadcrumb-item"><a href="./userServ">Manage Users</a></li>
                             <li class="breadcrumb-item"><a href="manageMovies.jsp">Manage Movies</a></li>
                             <li class="breadcrumb-item"><a href="addShowtime.jsp">Manage Showtimes</a></li>
                             <li class="breadcrumb-item"><a href="manageHalls.jsp">Manage Halls</a></li>

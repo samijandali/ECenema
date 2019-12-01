@@ -163,6 +163,11 @@
                     </div>
                     <br>
                     <div>
+                        <h6 class="heading-uppercase">Rating:</h6>
+                        <p><% out.print(movie.getRating());%></p>
+                    </div>
+                    <br>
+                    <div>
                         <h6 class="heading-uppercase">Review:</h6>
                         <p><% out.print(movie.getReview1());%></p>
                     </div>

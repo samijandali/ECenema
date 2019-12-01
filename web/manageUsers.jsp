@@ -1,4 +1,8 @@
 <%@ page import="model.User" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="model.UserService" %>
+<%@ page import="java.util.ArrayList" %>
+
 <%
     User user = new User();
     if (session.getAttribute("user") != null){
@@ -78,9 +82,13 @@
                     <!-- Submit button for new Username -->
                     <button class="button button-lg button-grey button-rounded">Submit</button>
                 </form>
+
+
+
                 <!-- Divider -->
                 <hr class="bg-black-09">
                 <h4 class="margin-bottom-20">Current Users</h4>
+                <form action="./suspendServ">
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
@@ -92,29 +100,33 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>John</td>
-                        <td>Smith</td>
-                        <td>name@email.com</td>
-                        <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Alexander</td>
-                        <td>Warren</td>
-                        <td>name@email.com</td>
-                        <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Melissa</td>
-                        <td>Bakos</td>
-                        <td>name@email.com</td>
-                        <td><a href="#" class="text-blue">Edit</a> | <a href="#" class="text-blue">Delete</a> | <a href="#" class="text-blue">Suspend</a></td>
-                    </tr>
+
+                    <%
+                        ArrayList<User> userlist = (ArrayList<User>) session.getAttribute("userlist");
+                        int count = 0;
+                        if(userlist.size() > 0){
+                            for(int q=0; q<userlist.size(); q++){%>
+                            <tr>
+                                <th scope="row"><%out.print(count);%></th>
+                                <td><%out.print(userlist.get(q).getFname());%></td>
+                                <td><%out.print(userlist.get(q).getLname());%></td>
+                                <td><%out.print(userlist.get(q).getEmail());%></td>
+                                <%if(userlist.get(q).getSuspended() == 0){%>
+                                    <td><a href="./suspendServ" id="email" value="email" class="text-blue">Suspend</a></td>
+                                <%}else{%>
+                                    <td><a href="./suspendServ" class="text-blue">Unsuspend</a></td>
+                                <%}%>
+                            </tr>
+                            <%count++;
+                            }}%>
                     </tbody>
                 </table>
+                </form>
+
+
+
+
+
                 <!-- checkbox -->
             </div>
         </div><!-- end row -->

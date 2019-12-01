@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/web" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/manageMovies.jsp" value="file://$PROJECT_DIR$/web" />
+        <entry key="file://$PROJECT_DIR$/web/manageUsers.jsp" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/moviePage.jsp" value="file://$PROJECT_DIR$/web" />
       </map>
     </option>
