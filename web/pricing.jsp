@@ -135,76 +135,30 @@
 
                     </div>
                     <%
-                        SeatService seatService = new SeatService();
-                        int showID = Integer.parseInt((String)session.getAttribute("seat"));
-                        ArrayList<Seat> seats = seatService.getAllShowSeats(showID);
-
+                        String[] seatNbs = (String[]) session.getAttribute("seatNbs");
+                        PriceService priceService = new PriceService();
+                        ArrayList<Price> prices = priceService.getPrices();
                     %>
                     <div class="booking-details">
-                        <h2>Booking Details</h2>
-                        <div class="front-indicator">Front</div>
+                        <h2>Select Ticket Type</h2>
+
                         <%
-                            int counter = 0;
-                            for(Seat seat: seats){
-                                if(counter%10 == 0){
-                                   out.print("<br>");
-                                }
-                        %>
+                            for(String seat: seatNbs){
 
-                        <input type='checkbox' class ="<% out.print(seat.getStatus());%>" name='seatsCheck' value='<% out.print(seat.getId());%>' <% if("disabled".equals(seat.getStatus())){out.print("disabled");}else{out.print("onclick=\"updateCount()\"");}%> id="<% out.print(seat.getId());%>"/><label for="<% out.print(seat.getId());%>"></label>
-                        <% counter++;
-
-                                }
-                        %>
-                        <h3> Selected Seats:</h3><h5 id="y"></h5>
-                        <script>
-                            window.updateCount = function() {
-                                var x = $(".available:checked").length;
-                                document.getElementById("y").innerHTML = x;
-                            };
-                        </script>
-                        <ul id="selected-seats">
-                        </ul>
+                        %><br>Seat
+                        <% out.print(seat);%>
+                        :
+                        <select>
+                            <% for(Price price: prices){ %>
+                            <option value="<% out.print(price.getId());%>-<%out.print(seat);%>"><% out.print(price.getType());%></option>
+                            <% } %>
+                        </select>
+                        <% }%>
                         <br>
                         <br>
-                        <button class="button button-lg button-dark">Continue &raquo;</button>
+                        <button class="button button-lg button-dark">Checkout &raquo;</button>
                         <div id="legend"></div>
                     </div>
-
-                    <style>
-                        .available[type=checkbox] {
-                            display:none;
-                        }
-
-                        .available[type=checkbox] + label
-                        {
-                            background: #999;
-                            height: 30px;
-                            width: 30px;
-                            display:inline-block;
-                            padding: 0 0 0 0px;
-                        }
-                        .available:checked + label
-                        {
-                            background: #0080FF;
-                            height: 30px;
-                            width: 30px;
-                            display:inline-block;
-                            padding: 0 0 0 0px;
-                        }
-                        .disabled[type=checkbox] {
-                            display:none;
-                        }
-
-                        .disabled[type=checkbox] + label
-                        {
-                            background: #FF0000;
-                            height: 30px;
-                            width: 30px;
-                            display:inline-block;
-                            padding: 0 0 0 0px;
-                        }
-                    </style>
                 </div>
                 <!-- Reviews tab content -->
             </div>

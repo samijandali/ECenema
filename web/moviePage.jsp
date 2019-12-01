@@ -97,7 +97,9 @@
                 <form action="./PassShowtime">
                 <!-- Order -->
                 <div>
-                    <label for="showtime">Showtimes</label><select style="width: 220px" class="custom-select" id="showtime" name="showtime">
+                    <label for="showtime">Showtimes</label>
+                    <br>
+                    <select style="width: 220px" class="custom-select" id="showtime" name="showtime">
                     <%
                         ShowtimeService showtimeService = new ShowtimeService();
                         ArrayList<String[]> showtimes = showtimeService.getAllShowtimes(movie.getTitle());
