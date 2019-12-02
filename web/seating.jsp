@@ -136,7 +136,7 @@
                     </div>
                     <%
                         SeatService seatService = new SeatService();
-                        int showID = Integer.parseInt((String)session.getAttribute("seat"));
+                        int showID = (Integer)session.getAttribute("showtimeID");
                         ArrayList<Seat> seats = seatService.getAllShowSeats(showID);
 
                     %>

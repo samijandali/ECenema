@@ -55,7 +55,7 @@
                 </li>
                 <% } %>
                 <li class="nav-item nav-dropdown">
-                    <a class="nav-link" href="checkout.html">Checkout</a>
+                    <a class="nav-link" href="checkout.jsp">Checkout</a>
                 </li>
             </ul>
             <button class="nav-toggle-btn">

@@ -15,8 +15,12 @@ public class PassSeats extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         String[] seatNbs = request.getParameterValues("seatsCheck");
+        int[] seatNb = new int[seatNbs.length];
+        for(int i = 0;i < seatNbs.length;i++)
+        {
+            seatNb[i] = Integer.parseInt(seatNbs[i]);
+        }
         HttpSession session = request.getSession();
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/pricing.jsp");
         session.setAttribute("seatNbs", seatNbs);

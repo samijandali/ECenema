@@ -15,13 +15,10 @@ public class PassShowtime extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String showID = request.getParameter("showtime");
+        int showID = Integer.parseInt(request.getParameter("showtime"));
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/seating.jsp");
         HttpSession session = request.getSession();
-
-        session.setAttribute("seat", showID);
-
+        session.setAttribute("showtimeID", showID);
         rd.include(request, response);
     }
 }

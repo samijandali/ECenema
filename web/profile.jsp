@@ -50,9 +50,14 @@
         </div>
     </nav>
 </header>
+
 <div class="section">
-    <h4 class="margin-bottom-20">Your Profile</h4>
+
+
     <br>
+    <div class="container">
+    <div class="col-12 col-lg-8">
+        <h4 class="margin-bottom-20">Your Profile</h4>
     <h4 class="font-weight-light margin-bottom-30">Personal Information</h4>
     <div class="form-row">
         <div class="col">
@@ -119,13 +124,15 @@
                 </div>
 
             </div>
-            <br></br>
+            <br>
             <a class="button button-lg button-grey button-rounded" href="editProfile.html">Edit Profile</a>
 
         </div>
         <div>
         </div>
 
+    </div>
+</div>
     </div>
 </div>
 <footer>

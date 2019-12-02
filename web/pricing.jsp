@@ -130,7 +130,7 @@
             <div class="tab-content">
                 <!-- Description tab content -->
                 <div class="tab-pane fade show active" id="tab-description">
-                    <form action="./PassSeats">
+                    <form action="./PassPrice">
                     <div id="seat-map">
 
                     </div>
@@ -148,16 +148,16 @@
                         %><br>Seat
                         <% out.print(seat);%>
                         :
-                        <select>
+                        <select name="priceSelect">
                             <% for(Price price: prices){ %>
-                            <option value="<% out.print(price.getId());%>-<%out.print(seat);%>"><% out.print(price.getType());%></option>
+                            <option name='priceSelect' value="<% out.print(price.getId());%>"><% out.print(price.getType());%></option>
                             <% } %>
                         </select>
                         <% }%>
                         <br>
                         <br>
                         <button class="button button-lg button-dark">Checkout &raquo;</button>
-                        <div id="legend"></div>
+                        </form>
                     </div>
                 </div>
                 <!-- Reviews tab content -->

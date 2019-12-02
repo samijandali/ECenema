@@ -55,5 +55,20 @@ public class PaymentService {
             }
             return null;
         }
+    public ArrayList<String[]> getAll(String username) throws ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet rs=stmt.executeQuery("SELECT payment.cardID, payment.cardNo FROM payment" +
+                " INNER JOIN users ON payment.userID = users.id" +
+                " WHERE users.username ='"+username+"'");
+        ArrayList<String[]> payments = new ArrayList<>();
+        while(rs.next()) {
+            String[] stringo = {rs.getString(1), decrypt(rs.getString(2), secretKey)};
+            payments.add(stringo);
+        }
+        return payments;
+    }
     }
 
