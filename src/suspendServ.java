@@ -20,37 +20,30 @@ public class suspendServ extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String urlWithQueryString = request.getRequestURL().append("").append(request.getQueryString()).toString();
-        String suspend = "1";
-        String unsuspend = "0";
         String email = request.getParameter("email");
         UserService userService = new UserService();
-        HttpSession session = request.getSession();
-        User user = new User();
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
-            user = userService.getByEmail(email);
-            String Query = "update users set suspend = ? where email ='"+request.getParameter("email")+"'";
-            PreparedStatement stmt = con.prepareStatement(Query);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageUsers.jsp");
-
-
-            out.print(email + " and " + user.getEmail());
-            if(request.getParameter("suspend").equals("0")) {
-                stmt.setString(1, suspend);
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+            Statement stmt=con.createStatement();
+            User user = userService.getByEmail(email);
+            String query = "";
+            if(user.getSuspended() == 0) {
+                query = "update users set suspend = 1 where email ='"+email+"'";
             } else {
-                stmt.setString(1, unsuspend);
+                query = "update users set suspend = 0 where email ='"+email+"'";
             }
-
-            int success = stmt.executeUpdate();
+            int success = stmt.executeUpdate(query);
             if(success==1){
                 out.println("<font color=red>Change was successful</font>");
-                rd.include(request,response);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
+                rd.include(request, response);
             } else {
                 out.println("<font color=red>Change was unsuccessful</font>");
-                rd.include(request,response);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
+                rd.include(request, response);
         }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -111,11 +111,13 @@
                                 <td><%out.print(userlist.get(q).getFname());%></td>
                                 <td><%out.print(userlist.get(q).getLname());%></td>
                                 <td><%out.print(userlist.get(q).getEmail());%></td>
-                                <%if(userlist.get(q).getSuspended() == 0){%>
-                                    <td><a href="./suspendServ" id="email" value="email" class="text-blue">Suspend</a></td>
-                                <%}else{%>
-                                    <td><a href="./suspendServ" class="text-blue">Unsuspend</a></td>
-                                <%}%>
+                                <td><a href="./suspendServ?email=<%out.print(userlist.get(q).getEmail());%>" name="email" class="text-blue">
+                                <%if(userlist.get(q).getSuspended() == 0){
+                                    out.print("Suspend");
+                                    }else{
+                                    out.print("Unsuspend");
+                                }%>
+                                </a></td>
                             </tr>
                             <%count++;
                             }}%>

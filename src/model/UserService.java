@@ -49,7 +49,7 @@ public class UserService extends User{
         Class.forName("com.mysql.jdbc.Driver");
         Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
         Statement stmt=con.createStatement();
-        ResultSet resultSet=stmt.executeQuery("Select * from movie WHERE email='"+email+"'");
+        ResultSet resultSet=stmt.executeQuery("Select * from users WHERE email='"+email+"'");
         while(resultSet.next()) {
             id = resultSet.getInt(1);
             username = resultSet.getString(2);
