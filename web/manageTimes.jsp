@@ -35,7 +35,7 @@ return; //necessary to make the redirect happen right now
 <header>
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="https://mono.flatheme.net/">
+            <a class="navbar-brand" href="index.jsp">
                 <h5>NotAMC Theatres</h5>
             </a>
             <button class="nav-toggle-btn position-center">
@@ -50,7 +50,7 @@ return; //necessary to make the redirect happen right now
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="About.html">About</a>
+                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                 </li>
             </ul>
         </div><!-- end container -->

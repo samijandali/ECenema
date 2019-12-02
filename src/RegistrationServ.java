@@ -44,8 +44,6 @@ public class RegistrationServ extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Error: ");
-
 		PrintWriter out=response.getWriter();
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
@@ -92,14 +90,13 @@ public class RegistrationServ extends HttpServlet {
 				while(rs.next())
 					id++;
 				int userid = id;
-				stmt.executeUpdate("insert into users values('"+id+"','"+username+"','"+password+"','"+fname+"','"+lname+"','"+email+"','"+address+"','"+state+"','"+zipcode+"','"+country+"','"+pnumber+"','"+gender+"','"+promo+"','"+0+"','"+active+"')");
+				stmt.executeUpdate("insert into users values('"+id+"','"+username+"','"+password+"','"+fname+"','"+lname+"','"+email+"','"+address+"','"+state+"','"+zipcode+"','"+country+"','"+pnumber+"','"+gender+"','"+promo+"','"+0+"','"+active+"','"+0+"')");
 				//stmt.executeUpdate("insert into payment values('"+0+"','"+userid+"','"+0+"','"+0+"','"+0+"','"+0+"','"+0+"','"+0+"')");
 			}
 		} catch (Exception p) {
 			out.print(p);
 		}
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String uname = "miguelangello96@gmail.com";
 		String pword = "pchepwzyepkhdoig";
 

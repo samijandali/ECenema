@@ -27,17 +27,18 @@ public class suspendServ extends HttpServlet {
         UserService userService = new UserService();
         HttpSession session = request.getSession();
         User user = new User();
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageUsers.jsp");
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
             user = userService.getByEmail(email);
-            String Query = "update users set suspend = ? where email ='"+request.getParameter("email")+"'";
+            String Query = "update users set suspend = ? where email='"+request.getParameter("email")+"'";
             PreparedStatement stmt = con.prepareStatement(Query);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageUsers.jsp");
+            session.setAttribute("email",user);
 
+            out.print(email + " and " + user.getEmail() + " And " + request.getAttribute("email"));
 
-            out.print(email + " and " + user.getEmail());
             if(request.getParameter("suspend").equals("0")) {
                 stmt.setString(1, suspend);
             } else {
