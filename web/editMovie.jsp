@@ -38,12 +38,12 @@
 <header>
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="index.jsp">
                 <h5>NotAMC Theatres</h5>
             </a>
             <ul class="list-horizontal-unstyled">
                 <li class="nav-item">
-                    <a style="white-space:pre" class="nav-link" href="/">Home</a>
+                    <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./Logout">Logout</a>

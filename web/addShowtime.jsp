@@ -37,7 +37,7 @@
 <header>
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="index.jsp">
                 <h5>NotAMC Theatres</h5>
             </a>
             <ul class="list-horizontal-unstyled">

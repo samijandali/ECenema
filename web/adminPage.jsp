@@ -33,7 +33,7 @@
 <header>
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="https://mono.flatheme.net/">
+            <a class="navbar-brand" href="index.jsp">
                 <h5>NotAMC Theatres</h5>
             </a>
             <button class="nav-toggle-btn position-center">
@@ -48,7 +48,7 @@
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">about</a>
+                    <a class="nav-link" href="about.html">About</a>
                 </li>
             </ul>
             </ul>
@@ -66,7 +66,7 @@
                             <li class="breadcrumb-item"><a href="addShowtime.jsp">Manage Showtimes</a></li>
                             <li class="breadcrumb-item"><a href="manageHalls.jsp">Manage Halls</a></li>
                             <li class="breadcrumb-item"><a href="managePromos.jsp">Manage Promotions</a></li>
-                            <li class="breadcrumb-item"><a href="reports.html">View Reports</a></li>
+                            <li class="breadcrumb-item"><a href="reportsPage.html">View Reports</a></li>
                         </ul>
                     </nav>
                 </div>
