@@ -1,3 +1,9 @@
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.Properties;
 
 @WebServlet("/PromoServ")
 public class PromoServ extends HttpServlet {
@@ -46,12 +53,46 @@ public class PromoServ extends HttpServlet {
                 e.printStackTrace();
             } //if moved here
             try {
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("./adminServ");
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("INSERT INTO promotion (name, discount, exp, description) VALUES ('" + name + "', '" + discount + "', '" + exp + "', '" + description + "')");
                 out.println("<font color=red>Promotion Successfully Added!</font>");
+
+
+                String uname = "miguelangello96@gmail.com";
+                String pword = "pchepwzyepkhdoig";
+                Properties p = new Properties();
+                p.put("mail.smtp.host", "smtp.gmail.com");
+                p.put("mail.smtp.port", "587");
+                p.put("mail.smtp.auth", "true");
+                p.put("mail.smtp.starttls.enable", "true");
+
+                Session session = Session.getInstance(p, new javax.mail.Authenticator(){
+                    protected PasswordAuthentication getPasswordAuthentication(){
+                        return new PasswordAuthentication("miguelangello96@gmail.com","pchepwzyepkhdoig");
+                    }//PassAuth
+                });//mailAuth
+
+                try
+                {
+                    Message msg = new MimeMessage(session);
+                    msg.setFrom(new InternetAddress("miguelangello96@gmail.com"));
+                    msg.setRecipients(Message.RecipientType.TO,
+                            InternetAddress.parse("hussainsqadri@gmail.com")
+                    );
+                    msg.setSubject("NotAMC Theatre Discount Code");
+                    msg.setText("NotAMC is offering a promotional discount for all movie!" +
+                            " Use the code: '" + name + "' to get $" + discount + " on your next purchase!");
+
+                    Transport.send(msg);
+                }
+
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
                 rd.include(request, response);
             } catch (Exception p) {
                 out.print(p);

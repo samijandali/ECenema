@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
 					} else if (1 == trial.getAdmin()) {
 						stmt.executeUpdate("update users set activity='" + 1 + "' where username='" + trial.getUsername() + "'");
 						session.setMaxInactiveInterval(10 * 60);
-						response.sendRedirect("./adminPage.jsp");
+						response.sendRedirect("./adminServ");
 					}
 				} else {
 					request.removeAttribute("user");

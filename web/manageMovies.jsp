@@ -50,7 +50,7 @@
                 </li>
                 <!-- dropdown link 8 -->
                 <li class="nav-item">
-                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
+                    <a class="nav-link" href="./adminServ">Admin Page</a>
                 </li>
             </ul>
         </div><!-- end container -->

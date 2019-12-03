@@ -69,7 +69,7 @@ public class movieServlet extends HttpServlet {
                 e.printStackTrace();
             } //if moved here
             try {
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("./adminServ");
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
                 Statement stmt = con.createStatement();

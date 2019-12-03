@@ -39,7 +39,7 @@
                         User user = (User) session.getAttribute("user");
                         if (1 == user.getAdmin()) { %>
                 <li class="nav-item nav-dropdown">
-                    <a class="nav-link" href="adminPage.jsp">Admin Page</a>
+                    <a class="nav-link" href="./adminServ">Admin Page</a>
                 </li>
                 <% } %>
                 <li class="nav-item nav-dropdown">

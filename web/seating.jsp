@@ -5,7 +5,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.*" %>
 <%@ page import="java.util.Arrays" %>
-<% Movie movie = (Movie) session.getAttribute("movie"); %>
+<% Movie movie = (Movie) session.getAttribute("movie");
+Showroom showroom = new Showroom();%>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from mono.flatheme.net/Shop/Other/Product-Single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Sep 2019 23:57:47 GMT -->
@@ -101,13 +103,10 @@
                 </a>
                 <div class="txt--tiny MovieTitleHeader-list txt--medium u-uppercase">
                     <span>
-                        "Theatre Name here"
                         <span class="u-separator" aria-hidden="true">
-                            |
                         </span>
                     </span>
                     <span>
-                        "Time of movie here"
                         <span class="u-separator" aria-hidden="true">
                         </span>
                     </span>

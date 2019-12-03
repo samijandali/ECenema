@@ -1,4 +1,8 @@
-<%@ page import="model.User" %><%
+<%@ page import="model.User" %>
+<%@ page import="model.Movie" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Promotion" %>
+<%
     User user = new User();
     if (session.getAttribute("user") != null){
         user = (User) session.getAttribute("user");
@@ -85,17 +89,26 @@
                         <div class="col-12 col-sm-6">
                             <label>Movies Available</label>
                             <br>
-                            <label>9</label>
+                            <%ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");%>
+                            <label><%out.print(movieList.size());%></label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Running Promotions</label>
                             <br>
-                            <label>0</label>
+                            <%ArrayList<Promotion> promolist = (ArrayList<Promotion>) session.getAttribute("promolist");%>
+                            <label><%out.print(promolist.size());%></label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Registered Users</label>
                             <br>
-                            <label>37</label>
+                            <%ArrayList<User> userlist = (ArrayList<User>) session.getAttribute("userlist");
+                            int count = 0;
+                            if(userlist.size() > 0) {
+                                for (int q = 0; q < userlist.size(); q++) {
+                                    count++;
+                                }
+                            }%>
+                            <label><%out.print(count);%></label>
                         </div>
                     </div>
                 </form>
