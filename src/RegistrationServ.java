@@ -117,10 +117,10 @@ public class RegistrationServ extends HttpServlet {
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("miguelangello96@gmail.com"));
 			msg.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("hussainsqadri@gmail.com")
+					InternetAddress.parse(email)
 			);
 			msg.setSubject("NotAMC Theatre Confirmation Message");
-			msg.setText("Congrats on signing up with our amazing Blockbuster theatre.");
+			msg.setText("Congrats "+fname+" on signing up with our amazing Blockbuster theatre.");
 
 			Transport.send(msg);
 
