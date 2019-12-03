@@ -4,6 +4,7 @@
 <%@ page import="model.ShowtimeService" %>
 <%@ page import="model.PriceService" %>
 <%@ page import="model.Price" %>
+<%@ page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,13 +68,15 @@
                         <%
                             int showtimeID = (Integer) session.getAttribute("showtimeID");
                             ShowtimeService showtimeService = new ShowtimeService();
+                            DecimalFormat df = new DecimalFormat("#.##");
                             String movie = showtimeService.getMovie(showtimeID);
                             String[] seatNbs = (String[]) session.getAttribute("seatNbs");
                             String[] seatLoc = (String[]) session.getAttribute("seatLoc");
                             String seatnabs = String.join(", ", seatNbs);
                             String seatlocos = String.join(", ", seatLoc);
                             Map<Integer, Integer> seatFre = (Map) session.getAttribute("seatFre");
-                            int total = Integer.parseInt(request.getParameter("total"));
+                            double total = Double.parseDouble(request.getParameter("total"));
+                            double discount = (Double) session.getAttribute("discount");
                         %>
                         <h5>
                             Movie: <% out.print(movie);%>
@@ -94,7 +97,11 @@
                             <%
                                 } %>
                             <br>
-                            Total : $<% out.print(total); %>
+                            Total Before Discount: $<% out.print(total); %>
+                                <br>
+                            Discount : <% out.print(100 * discount); %>%
+                                <br>
+                            Total After Discount: $<% out.print(df.format(total * (1.0 - discount))); %>
                         </h5>
                     </div>
                 </div><!-- end row -->

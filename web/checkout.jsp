@@ -62,9 +62,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8">
-                <div class="text-center margin-bottom-30">
-                    <p>Returning Customer? <a class="return-login-btn" href="Login.html">Login</a></p>
-                </div>
                 <h4 class="margin-bottom-20">Billing Details</h4>
                 <label for="payment">Select payment</label>
                 <br><select style="width: 220px" class="custom-select" id="payment" name="payment">
@@ -80,83 +77,11 @@
                 <%
                     }%>
             </select>
-<%--                <form>--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col-12 col-sm-6">--%>
-<%--                        <label class="required">First name</label>--%>
-<%--                        <input type="text" name="fname" required>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-12 col-sm-6">--%>
-<%--                        <label class="required">Last name</label>--%>
-<%--                        <input type="text" name="lname" required>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <label>Company name</label>--%>
-<%--                    <input type="text" name="cname">--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <label class="required">Country</label>--%>
-<%--                    <select class="custom-select custom-select-lg select-fullwidth margin-bottom-10">--%>
-<%--                        <option selected>Select your country</option>--%>
-<%--                        <option value="1">Australia</option>--%>
-<%--                        <option value="2">Brazil</option>--%>
-<%--                        <option value="3">Canada</option>--%>
-<%--                        <option value="4">France</option>--%>
-<%--                        <option value="5">German</option>--%>
-<%--                        <option value="6">India</option>--%>
-<%--                        <option value="7">Italy</option>--%>
-<%--                        <option value="8">Netherland</option>--%>
-<%--                        <option value="9">Mongolia</option>--%>
-<%--                        <option value="10">Turkey</option>--%>
-<%--                        <option value="11">Switzerland</option>--%>
-<%--                        <option value="12">United States of America</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col-12 col-sm-6">--%>
-<%--                        <label class="required">City</label>--%>
-<%--                        <input type="text" name="city" required>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-12 col-sm-6">--%>
-<%--                        <label>State</label>--%>
-<%--                        <input type="text" name="state">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <label>Street address</label>--%>
-<%--                    <input type="text" name="street1">--%>
-<%--                    <input type="text" name="street2">--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <label class="required">Postcode / ZIP</label>--%>
-<%--                    <input type="tel" name="postcode">--%>
-<%--                </div>--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col-12 col-sm-6">--%>
-<%--                        <label class="required">Phone</label>--%>
-<%--                        <input type="tel" name="phone" required>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-12 col-sm-6">--%>
-<%--                        <label class="required">Email</label>--%>
-<%--                        <input type="email" name="email" required>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <label>Order notes(optional)</label>--%>
-<%--                    <textarea name="note"></textarea>--%>
-<%--                </div>--%>
-<%--                <div class="custom-control custom-checkbox create-account-toggle">--%>
-<%--                    <input type="checkbox" class="custom-control-input" id="customCheck1">--%>
-<%--                    <label class="custom-control-label" for="customCheck1">Create an account</label>--%>
-<%--                </div>--%>
-<%--                <div class="create-account-box">--%>
-<%--                    <div>--%>
-<%--                        <label class="required">Create account password</label>--%>
-<%--                        <input type="password" name="pw">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </form>--%>
+                <br>
+                <br>
+                <label for="promo">Enter Promo Code</label>
+                <br>
+                <input style="width: 200px;" type="text" name="promo" id="promo">
             </div>
             <%
                 PriceService priceService = new PriceService();

@@ -3,7 +3,7 @@ package model;
 public class Order {
     int id;
     int userID;
-    int total;
+    double total;
     int showtimeID;
     int ccID;
     int promoID;
@@ -15,7 +15,7 @@ public class Order {
     public Order(){
 
     }
-    public Order(int id, int userID, int total, int showtimeID, int ccID, int promoID, int numAdult, int numKids, int numSenior, int numStudent) {
+    public Order(int id, int userID, double total, int showtimeID, int ccID, int promoID, int numAdult, int numKids, int numSenior, int numStudent) {
         this.id = id;
         this.userID = userID;
         this.total = total;
@@ -44,11 +44,11 @@ public class Order {
         this.userID = userID;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

@@ -1,11 +1,15 @@
 package model;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PromotionService extends Promotion{
     private int id;
-    private String name;
     private int discount;
     private String exp;
     private String description;
@@ -49,11 +53,49 @@ public class PromotionService extends Promotion{
         }
         return num;
     }
-    public boolean exists(String title) throws ClassNotFoundException, SQLException{
+    public boolean exists(String promoCode) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
         Statement stmt=con.createStatement();
-        ResultSet resultSet=stmt.executeQuery("Select COUNT(*) from promotion where name='"+name+"'");
-        return !resultSet.next();
+        ResultSet resultSet=stmt.executeQuery("Select * from promotion where name='"+promoCode+"'");
+        return resultSet.next();
     }
+
+    public int getIDByName(String promoCode) throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select id from promotion where name='"+promoCode+"'");
+        if(resultSet.next()){
+            return resultSet.getInt(1);
+        }
+        else return 0;
+    }
+
+    public double getDiscount(String promoCode) throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select discount from promotion where name='"+promoCode+"'");
+        if(resultSet.next()){
+            return resultSet.getDouble(1);
+        }
+        else return 0;
+    }
+
+    public boolean expired(String promoCode) throws ClassNotFoundException, SQLException, ParseException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select exp from promotion where name='"+promoCode+"'");
+        String exp = "";
+        if(resultSet.next()){
+            exp = resultSet.getString(1);
+        }
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
+        Date date2 = sdf.parse(exp);
+        return !date2.before(now);
+    }
+
 }

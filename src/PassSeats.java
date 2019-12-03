@@ -27,9 +27,7 @@ public class PassSeats extends HttpServlet {
             Matcher matcher = pattern.matcher(seat);
             if (matcher.find()) {
                 seatNbsarr.add(seat.substring(0, matcher.start()));
-                System.out.println(seat.substring(0, matcher.start()));
                 seatLocoarr.add(seat.substring(matcher.end()));
-                System.out.println(seat.substring(matcher.end()));
             }
         }
         String[] seatNbs = seatNbsarr.toArray(new String[seatNbsarr.size()]);

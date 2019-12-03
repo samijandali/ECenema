@@ -96,19 +96,6 @@
                 <a class="MovieTitleHeader-title" href="http://localhost:8080/ECenema_war_exploded/BookServ?movie=<% out.print(movie.getTitle());%>#">
                     <h2 class="MovieTitleHeader-title--shortened-title"><% out.print(movie.getTitle());%></h2>
                 </a>
-                <div class="txt--tiny MovieTitleHeader-list txt--medium u-uppercase">
-                    <span>
-                        "Theatre Name here"
-                        <span class="u-separator" aria-hidden="true">
-                            |
-                        </span>
-                    </span>
-                    <span>
-                        "Time of movie here"
-                        <span class="u-separator" aria-hidden="true">
-                        </span>
-                    </span>
-                </div>
             </div>
         </div>
     </div>

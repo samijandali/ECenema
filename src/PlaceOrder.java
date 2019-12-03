@@ -1,4 +1,5 @@
 import model.PriceService;
+import model.PromotionService;
 import model.ShowtimeService;
 import model.User;
 
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Map;
 import java.util.Properties;
 
@@ -28,16 +31,43 @@ public class PlaceOrder extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        DecimalFormat df = new DecimalFormat("#.##");
         PrintWriter out = response.getWriter();
+        double discount = 1.0;
+        int promoID = 0;
+        PromotionService promotionService = new PromotionService();
+        if(request.getParameter("promo")!=null){
+            String promo = request.getParameter("promo");
+            try {
+                if(promotionService.exists(promo)){
+                    if(!promotionService.expired(promo)) {
+                        promoID = promotionService.getIDByName(promo);
+                        discount = promotionService.getDiscount(promo) / 100.00;
+                    }else{
+                        out.println("<font color=red>Promo is expired</font>");
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/checkout.jsp");
+                        rd.include(request, response);
+                        return;
+                    }
+                }else{
+                    out.println("<font color=red>Promo doesn't exist, please check your code</font>");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/checkout.jsp");
+                    rd.include(request, response);
+                    return;
+                }
+            } catch (ClassNotFoundException | ParseException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
         int showtimeID = (Integer) session.getAttribute("showtimeID");
         String[] seatNbs = (String[]) session.getAttribute("seatNbs");
         String[] seatLoc =  (String[]) session.getAttribute("seatLoc");
         String seatnabs = String.join(", ", seatNbs);
         String seatlocos = String.join(", ", seatLoc);
-        System.out.println(seatnabs);
         Map<Integer, Integer> seatFre = (Map) session.getAttribute("seatFre");
         User user = (User) session.getAttribute("user");
-        int total = Integer.parseInt(request.getParameter("total"));
+        double total = Double.parseDouble(request.getParameter("total"));
+        session.setAttribute("discount", discount);
         int ccID = Integer.parseInt(request.getParameter("payment"));
         Properties p = new Properties();
         p.put("mail.smtp.host", "smtp.gmail.com");
@@ -53,7 +83,7 @@ public class PlaceOrder extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
-            String query = "INSERT INTO orderinfo (userid, total, showtimeID, ccID, numAdult, numKids, numSenior, numStudent) VALUES ("+user.getId()+", "+total +", "+showtimeID+", "+ccID+", ";
+            String query = "INSERT INTO orderinfo (userid, total, showtimeID, ccID, numAdult, numKids, numSenior, numStudent) VALUES ("+user.getId()+", "+df.format(total * (1.0 - discount)) +", "+showtimeID+", "+ccID+", ";
             Statement stmt = con.createStatement();
             if(seatFre.get(2) != null) {
                 query += (seatFre.get(2)) + ", ";
@@ -86,7 +116,11 @@ public class PlaceOrder extends HttpServlet {
                     " ORDER BY id DESC" +
                     " LIMIT 1";
             stmt.addBatch(queue2);
-            System.out.println(session.getAttribute("lastordo"));
+            String queue3 = "UPDATE orderinfo" +
+                    " SET promoID = '"+promoID+"'" +
+                    " ORDER BY id DESC" +
+                    " LIMIT 1";
+            stmt.addBatch(queue3);
             int ordernum = (Integer) session.getAttribute("lastordo") + 1;
             for(String seat: seatNbs) {
                 String query1 = "UPDATE seat set status = 'disabled', orderID = "+ ordernum +" where id = "+seat+"";
@@ -114,6 +148,9 @@ public class PlaceOrder extends HttpServlet {
                     mess += " x ";
                     mess += entry.getValue();
                 }
+                mess += "Total Before Discount: $" + total;
+                mess += "Discount: " + discount * 100 + "%";
+                mess += "Total After Discount: $" + df.format(total * (1.0 - discount));
                 msg.setText(mess);
                 Transport.send(msg);
                 out.println("<font color=red>Order has been ordered</font>");

@@ -53,7 +53,7 @@ public class PromoServ extends HttpServlet {
                 e.printStackTrace();
             } //if moved here
             try {
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("./adminServ");
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
                 Statement stmt = con.createStatement();
@@ -84,7 +84,7 @@ public class PromoServ extends HttpServlet {
                     );
                     msg.setSubject("NotAMC Theatre Discount Code");
                     msg.setText("NotAMC is offering a promotional discount for all movie!" +
-                            " Use the code: '" + name + "' to get $" + discount + " on your next purchase!");
+                            " Use the code: '" + name + "' to get " + discount + "% on your next purchase!");
 
                     Transport.send(msg);
                 }
