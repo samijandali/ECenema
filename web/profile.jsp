@@ -1,4 +1,7 @@
 <%@ page import="model.User" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Order" %>
+<%@ page import="model.OrderService" %>
 <%
     User user = new User();
     if (session.getAttribute("user") != null){
@@ -52,8 +55,6 @@
 </header>
 
 <div class="section">
-
-
     <br>
     <div class="container">
     <div class="col-12 col-lg-8">
@@ -125,10 +126,46 @@
 
             </div>
             <br>
+            <br>
+            <hr class="bg-black-09">
+            <br>
+            <br>
             <a class="button button-lg button-grey button-rounded" href="editProfile.html">Edit Profile</a>
-
+            <br>
+            <br>
+            <hr class="bg-black-09">
+            <br>
+            <br>
         </div>
         <div>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Number of Tickets</th>
+                    <th scope="col">Refund</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <%
+                    OrderService orderService = new OrderService();
+                    ArrayList<String[]> orders = orderService.getUserOrders(user.getId());
+                    if(orders.size() > 0){
+                        for(int q=0; q<orders.size(); q++){%>
+                <tr>
+                    <th scope="row"><%out.print(orders.get(q)[0]);%></th>
+                    <td>$<%out.print(orders.get(q)[1]);%></td>
+                    <td><%out.print(orders.get(q)[2]);%></td>
+                    <td><a href="./Refund?orderid=<%out.print(orders.get(q)[3]);%>" name="email" class="text-blue">
+                        Refund
+                    </a></td>
+                </tr>
+                <%
+                }}%>
+                </tbody>
+            </table>
         </div>
 
     </div>

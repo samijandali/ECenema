@@ -42,6 +42,20 @@ public class ShowtimeService {
         return ids;
     }
 
+    public String getMovie(int id) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet rs=stmt.executeQuery("SELECT movie.title FROM showtime " +
+                "INNER JOIN movie ON showtime.movieID = movie.id " +
+                "WHERE showtime.id = '"+id+"'");
+        String stringo = "";
+        while(rs.next()) {
+            stringo = rs.getString(1);
+        }
+        return stringo;
+    }
+
     public boolean exists(String name, String day, String time) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"

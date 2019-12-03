@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,18 @@ public class PassPrice extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int ordo = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("SELECT id FROM orderinfo ORDER BY id DESC LIMIT 1");
+            while (rs.next()){
+                ordo =rs.getInt(1);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
         String[] priceselect = request.getParameterValues("priceSelect");
         int[] numbers = new int[priceselect.length];
         for(int i = 0;i < priceselect.length;i++)
@@ -28,6 +41,7 @@ public class PassPrice extends HttpServlet {
         HttpSession session = request.getSession();
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/checkout.jsp");
         session.setAttribute("seatFre", seatFre);
+        session.setAttribute("lastordo", ordo);
         rd.include(request, response);
     }
     private  static Map<Integer, Integer> countOccurences (int[] arr) {

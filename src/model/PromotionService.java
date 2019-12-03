@@ -38,17 +38,17 @@ public class PromotionService extends Promotion{
         }
         return promo;
     }
-    //    public int getNumMovies() throws ClassNotFoundException, SQLException{
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
-//        Statement stmt=con.createStatement();
-//        ResultSet resultSet=stmt.executeQuery("Select COUNT(*) from movie");
-//        int num = 0;
-//        while(resultSet.next()){
-//            num = resultSet.getInt(1);
-//        }
-//        return num;
-//    }
+        public int getNumPromo() throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select COUNT(*) from promotion");
+        int num = 0;
+        while(resultSet.next()){
+            num = resultSet.getInt(1);
+        }
+        return num;
+    }
     public boolean exists(String title) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"

@@ -1,4 +1,8 @@
-<%@ page import="model.User" %><%
+<%@ page import="model.User" %>
+<%@ page import="model.MovieService" %>
+<%@ page import="model.PromotionService" %>
+<%@ page import="model.UserService" %>
+<%
     User user = new User();
     if (session.getAttribute("user") != null){
         user = (User) session.getAttribute("user");
@@ -85,17 +89,26 @@
                         <div class="col-12 col-sm-6">
                             <label>Movies Available</label>
                             <br>
-                            <label>9</label>
+                            <label><%
+                                MovieService movieService = new MovieService();
+                                out.print(movieService.getNumMovies());
+                            %></label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Running Promotions</label>
                             <br>
-                            <label>0</label>
+                            <label><%
+                                PromotionService promotionService = new PromotionService();
+                                out.print(promotionService.getNumPromo());
+                            %></label>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>Registered Users</label>
                             <br>
-                            <label>37</label>
+                            <label><%
+                                UserService userService = new UserService();
+                                out.print(userService.getNumUsers());
+                            %></label>
                         </div>
                     </div>
                 </form>

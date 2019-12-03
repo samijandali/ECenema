@@ -66,9 +66,6 @@
                     <a class="nav-link" href="Login.html">Login</a>
                 </li>
                 <% } %>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart</a>
-                </li>
             </ul>
             </ul>
         </div><!-- end container -->

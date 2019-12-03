@@ -70,4 +70,15 @@ public class UserService extends User{
         }
         return new User(id, username, password, fname, lname, email, address, state, zipcode, country, pnumber, gender, promo, admin, activity, suspended);
     }
+    public int getNumUsers() throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select COUNT(*) from users");
+        int num = 0;
+        while(resultSet.next()){
+            num = resultSet.getInt(1);
+        }
+        return num;
+    }
 }

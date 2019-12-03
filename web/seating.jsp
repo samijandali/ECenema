@@ -66,9 +66,6 @@
                     <a class="nav-link" href="Login.html">Login</a>
                 </li>
                 <% } %>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Cart</a>
-                </li>
             </ul>
             </ul>
         </div><!-- end container -->
@@ -151,7 +148,7 @@
                                 }
                         %>
 
-                        <input type='checkbox' class ="<% out.print(seat.getStatus());%>" name='seatsCheck' value='<% out.print(seat.getId());%>' <% if("disabled".equals(seat.getStatus())){out.print("disabled");}else{out.print("onclick=\"updateCount()\"");}%> id="<% out.print(seat.getId());%>"/><label for="<% out.print(seat.getId());%>"></label>
+                        <input type='checkbox' class ="<% out.print(seat.getStatus());%>" name='seatsCheck' value='<% out.print(seat.getId());%>-<% out.print(seat.getSeatnb());%>' <% if("disabled".equals(seat.getStatus())){out.print("disabled");}else{out.print("onclick=\"updateCount()\"");}%> id="<% out.print(seat.getId());%>"/><label for="<% out.print(seat.getId());%>"></label>
                         <% counter++;
 
                                 }

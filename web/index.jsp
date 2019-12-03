@@ -54,9 +54,6 @@
                     <a class="nav-link" href="Login.html">Login</a>
                 </li>
                 <% } %>
-                <li class="nav-item nav-dropdown">
-                    <a class="nav-link" href="checkout.jsp">Checkout</a>
-                </li>
             </ul>
             <button class="nav-toggle-btn">
                 <span class="lines"></span>

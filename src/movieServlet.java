@@ -1,4 +1,6 @@
+import model.Movie;
 import model.MovieService;
+import model.OrderService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -84,7 +86,14 @@ public class movieServlet extends HttpServlet {
 
         else{
             try {
+                OrderService orderService = new OrderService();
                 String title = request.getParameter("isTitles");
+                Movie movie = movieService.getByTitle(title);
+                if(orderService.bookingExist(movie.getID())){
+                    out.println("<font color=red>Bookings exist for movie, please check data and retry</font>");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageMovies.jsp");
+                    rd.include(request, response);
+                }
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
                 Statement stmt = con.createStatement();
