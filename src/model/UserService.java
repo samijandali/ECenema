@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserService extends User{
     private int id;
@@ -80,5 +81,18 @@ public class UserService extends User{
             num = resultSet.getInt(1);
         }
         return num;
+    }
+
+    public String[] getAllEmails() throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite","root", "asdasd");//"UN", "PW"
+        Statement stmt=con.createStatement();
+        ResultSet resultSet=stmt.executeQuery("Select email from users");
+        ArrayList<String> emails = new ArrayList<>();
+        while(resultSet.next()){
+            emails.add(resultSet.getString(1));
+        }
+
+        return emails.toArray(new String[emails.size()]);
     }
 }

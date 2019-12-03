@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.security.spec.KeySpec;
 import java.sql.Connection;
@@ -65,21 +66,13 @@ public class forgotUNServ extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-        String username = "miguelangello96@gmail.com";
-        String password = "pchepwzyepkhdoig";
         String recipient = request.getParameter("email");
-        String subject = "Your Password has been reset";
         String pword;
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
-
         Properties p = new Properties();
         p.put("mail.smtp.host", "smtp.gmail.com");
         p.put("mail.smtp.port", "587");
         p.put("mail.smtp.auth", "true");
         p.put("mail.smtp.starttls.enable", "true");
-        System.out.println("Setup server");
-
         Session session = Session.getInstance(p, new javax.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication(){
                 return new PasswordAuthentication("miguelangello96@gmail.com","pchepwzyepkhdoig");
@@ -92,24 +85,21 @@ public class forgotUNServ extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite?verifyServerCertificate=false&useSSL=true", "root", "asdasd");
             Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery("select * from users");
             pword = getSaltString();
             stmt.executeUpdate("update users set password='"+encrypt(pword, secretKey)+"' where email='"+recipient+"'");
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("miguelangello96@gmail.com"));
             msg.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("samirifai18@gmail.com")
+                    InternetAddress.parse(recipient)
             );
             msg.setSubject("NotAMC Forgot Password");
             msg.setText("Hi, this is your new password: " +pword+
                     ". For security reasons, you must change your password after logging in. ");
 
-            System.out.println("Sending email");
-
             Transport.send(msg);
-
-            System.out.println("Complete");
-
+            PrintWriter out = response.getWriter();
+            out.println("<font color=red>Email has been sent</font>");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.html");
             rd.include(request, response);
         }
 

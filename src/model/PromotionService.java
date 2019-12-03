@@ -3,9 +3,11 @@ package model;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class PromotionService extends Promotion{
@@ -92,10 +94,22 @@ public class PromotionService extends Promotion{
         if(resultSet.next()){
             exp = resultSet.getString(1);
         }
-        Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
-        Date date2 = sdf.parse(exp);
-        return !date2.before(now);
+        LocalDate todayLocalDate = LocalDate.now();
+        String[] dateSep = exp.split("/");
+        int one = Integer.parseInt(dateSep[0]);
+        int two = Integer.parseInt(dateSep[1]);
+        LocalDate anotherLocalDate = LocalDate.of(2019, one, two);
+
+        return compareLocalDates(todayLocalDate, anotherLocalDate);
+    }
+    private static boolean compareLocalDates(LocalDate todayLocalDate, LocalDate pastLocalDate)
+    {
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date1 = sdf.format(todayLocalDate);
+        String date2 = sdf.format(pastLocalDate);
+
+        return todayLocalDate.isAfter(pastLocalDate);
+
     }
 
 }

@@ -1,10 +1,17 @@
-<%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="model.User" %>
 <%@ page import="model.ShowtimeService" %>
 <%@ page import="model.PriceService" %>
-<%@ page import="model.Price" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="model.User" %>
+<%
+    User user;
+    if (session.getAttribute("user") != null){
+        user = (User) session.getAttribute("user");
+    }else{
+        response.sendRedirect("index.jsp");
+        return;
+    } %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,17 +37,20 @@
             </a>
             <nav class="nav">
                 <div class="container">
-                    <ul class="nav m-auto dropdown-transparent-dark">
-                        <!-- dropdown link 1 -->
-                        <li class="nav-item">
+                    <ul class="list-horizontal-unstyled">
+                        <li class="nav-item nav-dropdown">
                             <a style="white-space:pre" class="nav-link" href="index.jsp">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Login.html">Login</a>
+                        <% if (1 == user.getAdmin()) { %>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" href="adminPage.jsp">Admin Page</a>
                         </li>
-                        <!-- dropdown link 8 -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                        <% } %>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" href="./Logout">Logout</a>
+                        </li>
+                        <li class="nav-item nav-dropdown" >
+                            <a class="nav-link" href = "profile.jsp" > Profile </a >
                         </li>
                     </ul>
                     <!-- Nav Toggle button -->

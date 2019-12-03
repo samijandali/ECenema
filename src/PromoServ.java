@@ -1,3 +1,6 @@
+import model.User;
+import model.UserService;
+
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -34,24 +37,7 @@ public class PromoServ extends HttpServlet {
             String name = request.getParameter("name");
             int discount = Integer.parseInt(request.getParameter("discount"));
             String exp = request.getParameter("exp");
-            String description = request.getParameter("description");
-            try {
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/manageMovies.jsp");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviesite", "root", "asdasd");//"UN", "PW"
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from promotion");
-                out.print(rs.getString("name") + "and " + name + " and " + request.getParameter("name"));
-
-                while (rs.next()) {
-                    if (rs.getString("name").equalsIgnoreCase(name)) {
-                        out.println("<font color=red>Promotion already exits, please try another</font>");
-                        rd.include(request, response);
-                        return;
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } //if moved here
+            String description = request.getParameter("description"); //if moved here
             try {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/adminPage.jsp");
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -60,7 +46,8 @@ public class PromoServ extends HttpServlet {
                 stmt.executeUpdate("INSERT INTO promotion (name, discount, exp, description) VALUES ('" + name + "', '" + discount + "', '" + exp + "', '" + description + "')");
                 out.println("<font color=red>Promotion Successfully Added!</font>");
 
-
+                UserService userService = new UserService();
+                String[] emails = userService.getAllEmails();
                 String uname = "miguelangello96@gmail.com";
                 String pword = "pchepwzyepkhdoig";
                 Properties p = new Properties();
@@ -79,9 +66,9 @@ public class PromoServ extends HttpServlet {
                 {
                     Message msg = new MimeMessage(session);
                     msg.setFrom(new InternetAddress("miguelangello96@gmail.com"));
-                    msg.setRecipients(Message.RecipientType.TO,
-                            InternetAddress.parse("hussainsqadri@gmail.com")
-                    );
+                    for(String cc:emails){
+                        msg.addRecipients(Message.RecipientType.CC,InternetAddress.parse(cc));
+                    }
                     msg.setSubject("NotAMC Theatre Discount Code");
                     msg.setText("NotAMC is offering a promotional discount for all movie!" +
                             " Use the code: '" + name + "' to get " + discount + "% on your next purchase!");

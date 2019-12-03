@@ -130,7 +130,7 @@
             <hr class="bg-black-09">
             <br>
             <br>
-            <a class="button button-lg button-grey button-rounded" href="editProfile.html">Edit Profile</a>
+            <a class="button button-lg button-grey button-rounded" href="edito.jsp">Edit Profile</a>
             <br>
             <br>
             <hr class="bg-black-09">
